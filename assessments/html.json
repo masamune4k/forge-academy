@@ -1,0 +1,437 @@
+{
+  "courseId": "html",
+  "combos": [
+    {
+      "id": "combo-1",
+      "title": "HTML: integração 1",
+      "scenario": "Una a estrutura, as entradas e a interação inicial em uma entrega pequena.",
+      "requiredLessons": [
+        2,
+        3,
+        5,
+        6,
+        8,
+        9
+      ],
+      "skills": [
+        "Documento e idioma",
+        "Seções e hierarquia",
+        "Links e destinos"
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "No cenário \"Una a estrutura, as entradas e a interação inicial em uma entrega pequena.\" você precisa combinar Documento e idioma, Seções e hierarquia, Links e destinos. Para a parte Documento e idioma, qual decisão conserva o contrato?",
+          "options": [
+            "Doctype, idioma, título e charset definem uma base interpretável pelo navegador e por tecnologias assistivas.",
+            "Tratar título da aba e h1 como o mesmo elemento.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro."
+          ],
+          "answer": 0,
+          "explanation": "Doctype, idioma, título e charset definem uma base interpretável pelo navegador e por tecnologias assistivas. Compare o contrato com a entrada e com a evidência observada; tratar título da aba e h1 como o mesmo elemento. não é uma verificação suficiente.",
+          "reviewLessons": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "q2",
+          "prompt": "No cenário \"Una a estrutura, as entradas e a interação inicial em uma entrega pequena.\" você precisa combinar Documento e idioma, Seções e hierarquia, Links e destinos. Para a parte Seções e hierarquia, qual decisão conserva o contrato?",
+          "options": [
+            "Escolher níveis de título apenas pelo tamanho visual.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Títulos representam a hierarquia do conteúdo; main identifica o conteúdo principal."
+          ],
+          "answer": 3,
+          "explanation": "Títulos representam a hierarquia do conteúdo; main identifica o conteúdo principal. Compare o contrato com a entrada e com a evidência observada; escolher níveis de título apenas pelo tamanho visual. não é uma verificação suficiente.",
+          "reviewLessons": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "q3",
+          "prompt": "No cenário \"Una a estrutura, as entradas e a interação inicial em uma entrega pequena.\" você precisa combinar Documento e idioma, Seções e hierarquia, Links e destinos. Para a parte Links e destinos, qual decisão conserva o contrato?",
+          "options": [
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Âncoras navegam para destinos; botões executam ações. O texto do link precisa indicar o destino.",
+            "Usar um link href=# como botão sem implementar um comportamento acessível."
+          ],
+          "answer": 2,
+          "explanation": "Âncoras navegam para destinos; botões executam ações. O texto do link precisa indicar o destino. Compare o contrato com a entrada e com a evidência observada; usar um link href=# como botão sem implementar um comportamento acessível. não é uma verificação suficiente.",
+          "reviewLessons": [
+            8,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "id": "combo-2",
+      "title": "HTML: integração 2",
+      "scenario": "Evolua a entrega para tratar mudanças e casos de fronteira sem perder os contratos anteriores.",
+      "requiredLessons": [
+        11,
+        12,
+        14,
+        15,
+        17,
+        18
+      ],
+      "skills": [
+        "Listas e conteúdo estruturado",
+        "Imagens e alternativas",
+        "Formulário e labels"
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "No cenário \"Evolua a entrega para tratar mudanças e casos de fronteira sem perder os contratos anteriores.\" você precisa combinar Listas e conteúdo estruturado, Imagens e alternativas, Formulário e labels. Para a parte Listas e conteúdo estruturado, qual decisão conserva o contrato?",
+          "options": [
+            "Usar elementos de lista apenas para obter uma margem específica.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Listas ordenadas indicam sequência; listas não ordenadas indicam coleção."
+          ],
+          "answer": 3,
+          "explanation": "Listas ordenadas indicam sequência; listas não ordenadas indicam coleção. Compare o contrato com a entrada e com a evidência observada; usar elementos de lista apenas para obter uma margem específica. não é uma verificação suficiente.",
+          "reviewLessons": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": "q2",
+          "prompt": "No cenário \"Evolua a entrega para tratar mudanças e casos de fronteira sem perder os contratos anteriores.\" você precisa combinar Listas e conteúdo estruturado, Imagens e alternativas, Formulário e labels. Para a parte Imagens e alternativas, qual decisão conserva o contrato?",
+          "options": [
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "O texto alternativo comunica a função de uma imagem significativa; uma imagem decorativa usa alt vazio.",
+            "Repetir o nome do arquivo como alternativa sem descrever sua função."
+          ],
+          "answer": 2,
+          "explanation": "O texto alternativo comunica a função de uma imagem significativa; uma imagem decorativa usa alt vazio. Compare o contrato com a entrada e com a evidência observada; repetir o nome do arquivo como alternativa sem descrever sua função. não é uma verificação suficiente.",
+          "reviewLessons": [
+            14,
+            15
+          ]
+        },
+        {
+          "id": "q3",
+          "prompt": "No cenário \"Evolua a entrega para tratar mudanças e casos de fronteira sem perder os contratos anteriores.\" você precisa combinar Listas e conteúdo estruturado, Imagens e alternativas, Formulário e labels. Para a parte Formulário e labels, qual decisão conserva o contrato?",
+          "options": [
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Label associa o nome acessível ao controle. Name define o campo enviado pelo formulário.",
+            "Confundir id, name e placeholder.",
+            "O contrato pode ser presumido sem observar o resultado."
+          ],
+          "answer": 1,
+          "explanation": "Label associa o nome acessível ao controle. Name define o campo enviado pelo formulário. Compare o contrato com a entrada e com a evidência observada; confundir id, name e placeholder. não é uma verificação suficiente.",
+          "reviewLessons": [
+            17,
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "id": "combo-3",
+      "title": "HTML: integração 3",
+      "scenario": "Integre estados de falha, comunicação e recuperação; comprove o comportamento em uma reprodução controlada.",
+      "requiredLessons": [
+        20,
+        21,
+        23,
+        24,
+        26,
+        27
+      ],
+      "skills": [
+        "Tipos e validação",
+        "Grupos e instruções",
+        "Tabelas de dados"
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "No cenário \"Integre estados de falha, comunicação e recuperação; comprove o comportamento em uma reprodução controlada.\" você precisa combinar Tipos e validação, Grupos e instruções, Tabelas de dados. Para a parte Tipos e validação, qual decisão conserva o contrato?",
+          "options": [
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Tipos como email auxiliam entrada e validação no navegador; regras também precisam ser validadas no servidor.",
+            "Confiar na validação HTML como barreira suficiente para o backend."
+          ],
+          "answer": 2,
+          "explanation": "Tipos como email auxiliam entrada e validação no navegador; regras também precisam ser validadas no servidor. Compare o contrato com a entrada e com a evidência observada; confiar na validação HTML como barreira suficiente para o backend. não é uma verificação suficiente.",
+          "reviewLessons": [
+            20,
+            21
+          ]
+        },
+        {
+          "id": "q2",
+          "prompt": "No cenário \"Integre estados de falha, comunicação e recuperação; comprove o comportamento em uma reprodução controlada.\" você precisa combinar Tipos e validação, Grupos e instruções, Tabelas de dados. Para a parte Grupos e instruções, qual decisão conserva o contrato?",
+          "options": [
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Fieldset e legend nomeiam grupos de controles relacionados. Instruções devem continuar visíveis durante a interação.",
+            "Dar names diferentes e esperar seleção mutuamente exclusiva.",
+            "O contrato pode ser presumido sem observar o resultado."
+          ],
+          "answer": 1,
+          "explanation": "Fieldset e legend nomeiam grupos de controles relacionados. Instruções devem continuar visíveis durante a interação. Compare o contrato com a entrada e com a evidência observada; dar names diferentes e esperar seleção mutuamente exclusiva. não é uma verificação suficiente.",
+          "reviewLessons": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "q3",
+          "prompt": "No cenário \"Integre estados de falha, comunicação e recuperação; comprove o comportamento em uma reprodução controlada.\" você precisa combinar Tipos e validação, Grupos e instruções, Tabelas de dados. Para a parte Tabelas de dados, qual decisão conserva o contrato?",
+          "options": [
+            "Cabeçalhos e caption explicam as relações entre dados; tabela não é uma ferramenta de layout da página.",
+            "Usar células comuns como cabeçalhos apenas aplicando negrito.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro."
+          ],
+          "answer": 0,
+          "explanation": "Cabeçalhos e caption explicam as relações entre dados; tabela não é uma ferramenta de layout da página. Compare o contrato com a entrada e com a evidência observada; usar células comuns como cabeçalhos apenas aplicando negrito. não é uma verificação suficiente.",
+          "reviewLessons": [
+            26,
+            27
+          ]
+        }
+      ]
+    },
+    {
+      "id": "combo-4",
+      "title": "HTML: integração 4",
+      "scenario": "Prepare uma entrega reproduzível, com diagnóstico, revisão e limites de operação documentados.",
+      "requiredLessons": [
+        29,
+        30,
+        32,
+        33,
+        35,
+        36
+      ],
+      "skills": [
+        "Semântica interativa",
+        "Metadados e carregamento",
+        "Qualidade e contrato de entrega"
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "No cenário \"Prepare uma entrega reproduzível, com diagnóstico, revisão e limites de operação documentados.\" você precisa combinar Semântica interativa, Metadados e carregamento, Qualidade e contrato de entrega. Para a parte Semântica interativa, qual decisão conserva o contrato?",
+          "options": [
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Prefira controles nativos para herdar teclado e comportamento; ARIA complementa a semântica quando necessário.",
+            "Adicionar role=button em uma div e presumir que Enter e espaço passam a funcionar.",
+            "O contrato pode ser presumido sem observar o resultado."
+          ],
+          "answer": 1,
+          "explanation": "Prefira controles nativos para herdar teclado e comportamento; ARIA complementa a semântica quando necessário. Compare o contrato com a entrada e com a evidência observada; adicionar role=button em uma div e presumir que Enter e espaço passam a funcionar. não é uma verificação suficiente.",
+          "reviewLessons": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "q2",
+          "prompt": "No cenário \"Prepare uma entrega reproduzível, com diagnóstico, revisão e limites de operação documentados.\" você precisa combinar Semântica interativa, Metadados e carregamento, Qualidade e contrato de entrega. Para a parte Metadados e carregamento, qual decisão conserva o contrato?",
+          "options": [
+            "Viewport, título e descrição têm funções distintas; a organização dos recursos afeta carregamento e uso em diferentes telas.",
+            "Tentar corrigir um layout inacessível proibindo zoom.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro."
+          ],
+          "answer": 0,
+          "explanation": "Viewport, título e descrição têm funções distintas; a organização dos recursos afeta carregamento e uso em diferentes telas. Compare o contrato com a entrada e com a evidência observada; tentar corrigir um layout inacessível proibindo zoom. não é uma verificação suficiente.",
+          "reviewLessons": [
+            32,
+            33
+          ]
+        },
+        {
+          "id": "q3",
+          "prompt": "No cenário \"Prepare uma entrega reproduzível, com diagnóstico, revisão e limites de operação documentados.\" você precisa combinar Semântica interativa, Metadados e carregamento, Qualidade e contrato de entrega. Para a parte Qualidade e contrato de entrega, qual decisão conserva o contrato?",
+          "options": [
+            "Declarar acessibilidade comprovada apenas porque o validador não encontrou erros.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Validar HTML identifica problemas estruturais, mas a qualidade também exige testes de teclado, conteúdo e fluxo."
+          ],
+          "answer": 3,
+          "explanation": "Validar HTML identifica problemas estruturais, mas a qualidade também exige testes de teclado, conteúdo e fluxo. Compare o contrato com a entrada e com a evidência observada; declarar acessibilidade comprovada apenas porque o validador não encontrou erros. não é uma verificação suficiente.",
+          "reviewLessons": [
+            35,
+            36
+          ]
+        }
+      ]
+    }
+  ],
+  "finalProject": {
+    "id": "final",
+    "title": "Portal acessível de inscrição em cursos",
+    "scenario": "Consolide os incrementos dos 12 módulos em uma única entrega verificável, usando dados fictícios e explicando os contratos e limites.",
+    "requirements": [
+      "Documento com idioma, metadados e hierarquia de títulos coerente.",
+      "Catálogo com seções, listas e links para destinos reais.",
+      "Formulário com labels, names, tipos, instruções e validação básica.",
+      "Agrupamento de opções e mensagens compreensíveis por teclado.",
+      "Imagens com alternativas e tabela de dados com cabeçalhos quando necessários.",
+      "Relatório de validação estrutural, navegação por teclado e zoom de 200%."
+    ],
+    "deliverables": [
+      "Código ou repositório do laboratório completo.",
+      "README com ambiente, instalação, execução e decisões.",
+      "Evidências dos casos normais, de fronteira e de falha.",
+      "Relatório de revisão com limitações e próximos passos."
+    ],
+    "rubric": [
+      {
+        "id": "r1",
+        "title": "Critério 1",
+        "description": "Documento com idioma, metadados e hierarquia de títulos coerente.",
+        "reviewLessons": [
+          3,
+          6
+        ]
+      },
+      {
+        "id": "r2",
+        "title": "Critério 2",
+        "description": "Catálogo com seções, listas e links para destinos reais.",
+        "reviewLessons": [
+          9,
+          12
+        ]
+      },
+      {
+        "id": "r3",
+        "title": "Critério 3",
+        "description": "Formulário com labels, names, tipos, instruções e validação básica.",
+        "reviewLessons": [
+          15,
+          18
+        ]
+      },
+      {
+        "id": "r4",
+        "title": "Critério 4",
+        "description": "Agrupamento de opções e mensagens compreensíveis por teclado.",
+        "reviewLessons": [
+          21,
+          24
+        ]
+      },
+      {
+        "id": "r5",
+        "title": "Critério 5",
+        "description": "Imagens com alternativas e tabela de dados com cabeçalhos quando necessários.",
+        "reviewLessons": [
+          27,
+          30
+        ]
+      },
+      {
+        "id": "r6",
+        "title": "Critério 6",
+        "description": "Relatório de validação estrutural, navegação por teclado e zoom de 200%.",
+        "reviewLessons": [
+          33,
+          36
+        ]
+      }
+    ],
+    "acceptance": [
+      {
+        "title": "Fluxo principal",
+        "setup": "Prepare a entrega em ambiente limpo conforme o README.",
+        "input": "Execute a operação principal e percorra os seis requisitos.",
+        "expected": "O comportamento observado corresponde aos requisitos e pode ser reproduzido por outra pessoa.",
+        "reviewLessons": [
+          3,
+          9,
+          18
+        ]
+      },
+      {
+        "title": "Fronteira e falha",
+        "setup": "Use uma cópia do laboratório e uma entrada inválida ou condição de erro documentada.",
+        "input": "Provoque a condição de erro, registre o resultado e aplique a recuperação prevista.",
+        "expected": "A falha é compreensível, não corrompe o estado válido e o relatório explica a responsabilidade de cada camada.",
+        "reviewLessons": [
+          12,
+          21,
+          27
+        ]
+      },
+      {
+        "title": "Entrega reproduzível",
+        "setup": "Comece em nova pasta ou clone limpo, sem caches e sem arquivos privados.",
+        "input": "Siga os comandos e inspeções do README até a versão final.",
+        "expected": "Os artefatos e evidências correspondem à versão entregue; nenhuma senha ou dado real foi incluído.",
+        "reviewLessons": [
+          30,
+          33,
+          36
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Na defesa de Portal acessível de inscrição em cursos, como você justifica a decisão de Imagens e alternativas?",
+        "options": [
+          "Repetir o nome do arquivo como alternativa sem descrever sua função.",
+          "O contrato pode ser presumido sem observar o resultado.",
+          "A aparência isolada comprova o comportamento e todos os casos de erro.",
+          "O texto alternativo comunica a função de uma imagem significativa; uma imagem decorativa usa alt vazio."
+        ],
+        "answer": 3,
+        "explanation": "O texto alternativo comunica a função de uma imagem significativa; uma imagem decorativa usa alt vazio. Compare o contrato com a entrada e com a evidência observada; repetir o nome do arquivo como alternativa sem descrever sua função. não é uma verificação suficiente.",
+        "reviewLessons": [
+          14,
+          15
+        ]
+      },
+      {
+        "id": "q2",
+        "prompt": "Na defesa de Portal acessível de inscrição em cursos, como você justifica a decisão de Tabelas de dados?",
+        "options": [
+          "O contrato pode ser presumido sem observar o resultado.",
+          "A aparência isolada comprova o comportamento e todos os casos de erro.",
+          "Cabeçalhos e caption explicam as relações entre dados; tabela não é uma ferramenta de layout da página.",
+          "Usar células comuns como cabeçalhos apenas aplicando negrito."
+        ],
+        "answer": 2,
+        "explanation": "Cabeçalhos e caption explicam as relações entre dados; tabela não é uma ferramenta de layout da página. Compare o contrato com a entrada e com a evidência observada; usar células comuns como cabeçalhos apenas aplicando negrito. não é uma verificação suficiente.",
+        "reviewLessons": [
+          26,
+          27
+        ]
+      },
+      {
+        "id": "q3",
+        "prompt": "Na defesa de Portal acessível de inscrição em cursos, como você justifica a decisão de Qualidade e contrato de entrega?",
+        "options": [
+          "A aparência isolada comprova o comportamento e todos os casos de erro.",
+          "Validar HTML identifica problemas estruturais, mas a qualidade também exige testes de teclado, conteúdo e fluxo.",
+          "Declarar acessibilidade comprovada apenas porque o validador não encontrou erros.",
+          "O contrato pode ser presumido sem observar o resultado."
+        ],
+        "answer": 1,
+        "explanation": "Validar HTML identifica problemas estruturais, mas a qualidade também exige testes de teclado, conteúdo e fluxo. Compare o contrato com a entrada e com a evidência observada; declarar acessibilidade comprovada apenas porque o validador não encontrou erros. não é uma verificação suficiente.",
+        "reviewLessons": [
+          35,
+          36
+        ]
+      }
+    ]
+  }
+}

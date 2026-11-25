@@ -1,0 +1,437 @@
+{
+  "courseId": "typescript",
+  "combos": [
+    {
+      "id": "combo-1",
+      "title": "TypeScript: integração 1",
+      "scenario": "Una a estrutura, as entradas e a interação inicial em uma entrega pequena.",
+      "requiredLessons": [
+        2,
+        3,
+        5,
+        6,
+        8,
+        9
+      ],
+      "skills": [
+        "Inferência e compilação",
+        "Objetos e propriedades opcionais",
+        "Unions e narrowing"
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "No cenário \"Una a estrutura, as entradas e a interação inicial em uma entrega pequena.\" você precisa combinar Inferência e compilação, Objetos e propriedades opcionais, Unions e narrowing. Para a parte Inferência e compilação, qual decisão conserva o contrato?",
+          "options": [
+            "TypeScript verifica contratos durante o desenvolvimento; os tipos não validam dados automaticamente em execução.",
+            "Esperar que uma anotação de tipo transforme texto recebido da rede em número.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro."
+          ],
+          "answer": 0,
+          "explanation": "TypeScript verifica contratos durante o desenvolvimento; os tipos não validam dados automaticamente em execução. Compare o contrato com a entrada e com a evidência observada; esperar que uma anotação de tipo transforme texto recebido da rede em número. não é uma verificação suficiente.",
+          "reviewLessons": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "q2",
+          "prompt": "No cenário \"Una a estrutura, as entradas e a interação inicial em uma entrega pequena.\" você precisa combinar Inferência e compilação, Objetos e propriedades opcionais, Unions e narrowing. Para a parte Objetos e propriedades opcionais, qual decisão conserva o contrato?",
+          "options": [
+            "Aplicar non-null assertion para esconder uma ausência possível.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Modele ausência com propriedade opcional e trate undefined antes de usar o valor."
+          ],
+          "answer": 3,
+          "explanation": "Modele ausência com propriedade opcional e trate undefined antes de usar o valor. Compare o contrato com a entrada e com a evidência observada; aplicar non-null assertion para esconder uma ausência possível. não é uma verificação suficiente.",
+          "reviewLessons": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "q3",
+          "prompt": "No cenário \"Una a estrutura, as entradas e a interação inicial em uma entrega pequena.\" você precisa combinar Inferência e compilação, Objetos e propriedades opcionais, Unions e narrowing. Para a parte Unions e narrowing, qual decisão conserva o contrato?",
+          "options": [
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Uma verificação de typeof restringe a união no ramo em que a condição foi comprovada.",
+            "Converter com as para remover um erro sem comprovar a forma do dado."
+          ],
+          "answer": 2,
+          "explanation": "Uma verificação de typeof restringe a união no ramo em que a condição foi comprovada. Compare o contrato com a entrada e com a evidência observada; converter com as para remover um erro sem comprovar a forma do dado. não é uma verificação suficiente.",
+          "reviewLessons": [
+            8,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "id": "combo-2",
+      "title": "TypeScript: integração 2",
+      "scenario": "Evolua a entrega para tratar mudanças e casos de fronteira sem perder os contratos anteriores.",
+      "requiredLessons": [
+        11,
+        12,
+        14,
+        15,
+        17,
+        18
+      ],
+      "skills": [
+        "Funções e contratos",
+        "Uniões discriminadas",
+        "Generics e relações"
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "No cenário \"Evolua a entrega para tratar mudanças e casos de fronteira sem perder os contratos anteriores.\" você precisa combinar Funções e contratos, Uniões discriminadas, Generics e relações. Para a parte Funções e contratos, qual decisão conserva o contrato?",
+          "options": [
+            "Usar any no callback para aceitar uma transformação incompatível com o retorno.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Parâmetros, retornos e callbacks expressam a transformação permitida. O corpo deve respeitar todas as possibilidades da assinatura."
+          ],
+          "answer": 3,
+          "explanation": "Parâmetros, retornos e callbacks expressam a transformação permitida. O corpo deve respeitar todas as possibilidades da assinatura. Compare o contrato com a entrada e com a evidência observada; usar any no callback para aceitar uma transformação incompatível com o retorno. não é uma verificação suficiente.",
+          "reviewLessons": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": "q2",
+          "prompt": "No cenário \"Evolua a entrega para tratar mudanças e casos de fronteira sem perder os contratos anteriores.\" você precisa combinar Funções e contratos, Uniões discriminadas, Generics e relações. Para a parte Uniões discriminadas, qual decisão conserva o contrato?",
+          "options": [
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Uma propriedade discriminante identifica estados válidos e evita combinações impossíveis de flags.",
+            "Permitir simultaneamente sucesso true e dados de erro obrigatórios sem discriminar os estados."
+          ],
+          "answer": 2,
+          "explanation": "Uma propriedade discriminante identifica estados válidos e evita combinações impossíveis de flags. Compare o contrato com a entrada e com a evidência observada; permitir simultaneamente sucesso true e dados de erro obrigatórios sem discriminar os estados. não é uma verificação suficiente.",
+          "reviewLessons": [
+            14,
+            15
+          ]
+        },
+        {
+          "id": "q3",
+          "prompt": "No cenário \"Evolua a entrega para tratar mudanças e casos de fronteira sem perder os contratos anteriores.\" você precisa combinar Funções e contratos, Uniões discriminadas, Generics e relações. Para a parte Generics e relações, qual decisão conserva o contrato?",
+          "options": [
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Um parâmetro genérico preserva a relação entre entrada e saída sem perder informação para any.",
+            "Declarar que primeiro sempre retorna T, mesmo para um array vazio.",
+            "O contrato pode ser presumido sem observar o resultado."
+          ],
+          "answer": 1,
+          "explanation": "Um parâmetro genérico preserva a relação entre entrada e saída sem perder informação para any. Compare o contrato com a entrada e com a evidência observada; declarar que primeiro sempre retorna T, mesmo para um array vazio. não é uma verificação suficiente.",
+          "reviewLessons": [
+            17,
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "id": "combo-3",
+      "title": "TypeScript: integração 3",
+      "scenario": "Integre estados de falha, comunicação e recuperação; comprove o comportamento em uma reprodução controlada.",
+      "requiredLessons": [
+        20,
+        21,
+        23,
+        24,
+        26,
+        27
+      ],
+      "skills": [
+        "Keyof e acesso seguro",
+        "Mapped types e utilitários",
+        "Unknown e validação real"
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "No cenário \"Integre estados de falha, comunicação e recuperação; comprove o comportamento em uma reprodução controlada.\" você precisa combinar Keyof e acesso seguro, Mapped types e utilitários, Unknown e validação real. Para a parte Keyof e acesso seguro, qual decisão conserva o contrato?",
+          "options": [
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Keyof restringe chaves ao contrato do objeto; o tipo indexado preserva o tipo da propriedade retornada.",
+            "Aceitar qualquer string como chave e afirmar que o valor sempre existe."
+          ],
+          "answer": 2,
+          "explanation": "Keyof restringe chaves ao contrato do objeto; o tipo indexado preserva o tipo da propriedade retornada. Compare o contrato com a entrada e com a evidência observada; aceitar qualquer string como chave e afirmar que o valor sempre existe. não é uma verificação suficiente.",
+          "reviewLessons": [
+            20,
+            21
+          ]
+        },
+        {
+          "id": "q2",
+          "prompt": "No cenário \"Integre estados de falha, comunicação e recuperação; comprove o comportamento em uma reprodução controlada.\" você precisa combinar Keyof e acesso seguro, Mapped types e utilitários, Unknown e validação real. Para a parte Mapped types e utilitários, qual decisão conserva o contrato?",
+          "options": [
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Readonly, Pick e Partial transformam contratos estáticos; readonly não congela o objeto em execução.",
+            "Confundir Readonly com Object.freeze e com congelamento profundo.",
+            "O contrato pode ser presumido sem observar o resultado."
+          ],
+          "answer": 1,
+          "explanation": "Readonly, Pick e Partial transformam contratos estáticos; readonly não congela o objeto em execução. Compare o contrato com a entrada e com a evidência observada; confundir Readonly com Object.freeze e com congelamento profundo. não é uma verificação suficiente.",
+          "reviewLessons": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "q3",
+          "prompt": "No cenário \"Integre estados de falha, comunicação e recuperação; comprove o comportamento em uma reprodução controlada.\" você precisa combinar Keyof e acesso seguro, Mapped types e utilitários, Unknown e validação real. Para a parte Unknown e validação real, qual decisão conserva o contrato?",
+          "options": [
+            "Unknown exige prova antes do uso. Valide estrutura, tipo e regra de domínio de cada dado externo.",
+            "Usar JSON.parse seguido de as Pedido como se isso validasse o conteúdo.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro."
+          ],
+          "answer": 0,
+          "explanation": "Unknown exige prova antes do uso. Valide estrutura, tipo e regra de domínio de cada dado externo. Compare o contrato com a entrada e com a evidência observada; usar JSON.parse seguido de as Pedido como se isso validasse o conteúdo. não é uma verificação suficiente.",
+          "reviewLessons": [
+            26,
+            27
+          ]
+        }
+      ]
+    },
+    {
+      "id": "combo-4",
+      "title": "TypeScript: integração 4",
+      "scenario": "Prepare uma entrega reproduzível, com diagnóstico, revisão e limites de operação documentados.",
+      "requiredLessons": [
+        29,
+        30,
+        32,
+        33,
+        35,
+        36
+      ],
+      "skills": [
+        "Promessas e falhas",
+        "Módulos e configuração estrita",
+        "Tipos condicionais e testes de contrato"
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "No cenário \"Prepare uma entrega reproduzível, com diagnóstico, revisão e limites de operação documentados.\" você precisa combinar Promessas e falhas, Módulos e configuração estrita, Tipos condicionais e testes de contrato. Para a parte Promessas e falhas, qual decisão conserva o contrato?",
+          "options": [
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Promise descreve o valor resolvido; erros continuam precisando de tratamento em execução.",
+            "Supor que Promise<number> impede falhas de rede ou garante o formato do JSON.",
+            "O contrato pode ser presumido sem observar o resultado."
+          ],
+          "answer": 1,
+          "explanation": "Promise descreve o valor resolvido; erros continuam precisando de tratamento em execução. Compare o contrato com a entrada e com a evidência observada; supor que Promise<number> impede falhas de rede ou garante o formato do JSON. não é uma verificação suficiente.",
+          "reviewLessons": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "q2",
+          "prompt": "No cenário \"Prepare uma entrega reproduzível, com diagnóstico, revisão e limites de operação documentados.\" você precisa combinar Promessas e falhas, Módulos e configuração estrita, Tipos condicionais e testes de contrato. Para a parte Módulos e configuração estrita, qual decisão conserva o contrato?",
+          "options": [
+            "O compilador e o runtime precisam concordar sobre resolução de módulos. Um arquivo com export tem escopo de módulo.",
+            "Escolher resolução de módulos de bundler e esperar a mesma resolução em todo runtime Node.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro."
+          ],
+          "answer": 0,
+          "explanation": "O compilador e o runtime precisam concordar sobre resolução de módulos. Um arquivo com export tem escopo de módulo. Compare o contrato com a entrada e com a evidência observada; escolher resolução de módulos de bundler e esperar a mesma resolução em todo runtime Node. não é uma verificação suficiente.",
+          "reviewLessons": [
+            32,
+            33
+          ]
+        },
+        {
+          "id": "q3",
+          "prompt": "No cenário \"Prepare uma entrega reproduzível, com diagnóstico, revisão e limites de operação documentados.\" você precisa combinar Promessas e falhas, Módulos e configuração estrita, Tipos condicionais e testes de contrato. Para a parte Tipos condicionais e testes de contrato, qual decisão conserva o contrato?",
+          "options": [
+            "Tornar o tipo público tão complexo que o consumidor precisa de assertions para utilizá-lo.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Tipos condicionais expressam relações, mas não substituem funções de validação nem testes de execução."
+          ],
+          "answer": 3,
+          "explanation": "Tipos condicionais expressam relações, mas não substituem funções de validação nem testes de execução. Compare o contrato com a entrada e com a evidência observada; tornar o tipo público tão complexo que o consumidor precisa de assertions para utilizá-lo. não é uma verificação suficiente.",
+          "reviewLessons": [
+            35,
+            36
+          ]
+        }
+      ]
+    }
+  ],
+  "finalProject": {
+    "id": "final",
+    "title": "Motor tipado de pedidos e validação de entrada",
+    "scenario": "Consolide os incrementos dos 12 módulos em uma única entrega verificável, usando dados fictícios e explicando os contratos e limites.",
+    "requirements": [
+      "Modelar pedidos e estados com uniões discriminadas.",
+      "Validar entradas unknown antes de convertê-las em dados do domínio.",
+      "Implementar funções e coleções genéricas preservando a relação entre entrada e saída.",
+      "Tratar ausência e erros sem any ou assertions para esconder incompatibilidades.",
+      "Separar módulos e documentar a configuração estrita compatível com o runtime.",
+      "Entregar testes de execução e exemplos positivos e negativos da checagem de tipos."
+    ],
+    "deliverables": [
+      "Código ou repositório do laboratório completo.",
+      "README com ambiente, instalação, execução e decisões.",
+      "Evidências dos casos normais, de fronteira e de falha.",
+      "Relatório de revisão com limitações e próximos passos."
+    ],
+    "rubric": [
+      {
+        "id": "r1",
+        "title": "Critério 1",
+        "description": "Modelar pedidos e estados com uniões discriminadas.",
+        "reviewLessons": [
+          3,
+          6
+        ]
+      },
+      {
+        "id": "r2",
+        "title": "Critério 2",
+        "description": "Validar entradas unknown antes de convertê-las em dados do domínio.",
+        "reviewLessons": [
+          9,
+          12
+        ]
+      },
+      {
+        "id": "r3",
+        "title": "Critério 3",
+        "description": "Implementar funções e coleções genéricas preservando a relação entre entrada e saída.",
+        "reviewLessons": [
+          15,
+          18
+        ]
+      },
+      {
+        "id": "r4",
+        "title": "Critério 4",
+        "description": "Tratar ausência e erros sem any ou assertions para esconder incompatibilidades.",
+        "reviewLessons": [
+          21,
+          24
+        ]
+      },
+      {
+        "id": "r5",
+        "title": "Critério 5",
+        "description": "Separar módulos e documentar a configuração estrita compatível com o runtime.",
+        "reviewLessons": [
+          27,
+          30
+        ]
+      },
+      {
+        "id": "r6",
+        "title": "Critério 6",
+        "description": "Entregar testes de execução e exemplos positivos e negativos da checagem de tipos.",
+        "reviewLessons": [
+          33,
+          36
+        ]
+      }
+    ],
+    "acceptance": [
+      {
+        "title": "Fluxo principal",
+        "setup": "Prepare a entrega em ambiente limpo conforme o README.",
+        "input": "Execute a operação principal e percorra os seis requisitos.",
+        "expected": "O comportamento observado corresponde aos requisitos e pode ser reproduzido por outra pessoa.",
+        "reviewLessons": [
+          3,
+          9,
+          18
+        ]
+      },
+      {
+        "title": "Fronteira e falha",
+        "setup": "Use uma cópia do laboratório e uma entrada inválida ou condição de erro documentada.",
+        "input": "Provoque a condição de erro, registre o resultado e aplique a recuperação prevista.",
+        "expected": "A falha é compreensível, não corrompe o estado válido e o relatório explica a responsabilidade de cada camada.",
+        "reviewLessons": [
+          12,
+          21,
+          27
+        ]
+      },
+      {
+        "title": "Entrega reproduzível",
+        "setup": "Comece em nova pasta ou clone limpo, sem caches e sem arquivos privados.",
+        "input": "Siga os comandos e inspeções do README até a versão final.",
+        "expected": "Os artefatos e evidências correspondem à versão entregue; nenhuma senha ou dado real foi incluído.",
+        "reviewLessons": [
+          30,
+          33,
+          36
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Na defesa de Motor tipado de pedidos e validação de entrada, como você justifica a decisão de Uniões discriminadas?",
+        "options": [
+          "Permitir simultaneamente sucesso true e dados de erro obrigatórios sem discriminar os estados.",
+          "O contrato pode ser presumido sem observar o resultado.",
+          "A aparência isolada comprova o comportamento e todos os casos de erro.",
+          "Uma propriedade discriminante identifica estados válidos e evita combinações impossíveis de flags."
+        ],
+        "answer": 3,
+        "explanation": "Uma propriedade discriminante identifica estados válidos e evita combinações impossíveis de flags. Compare o contrato com a entrada e com a evidência observada; permitir simultaneamente sucesso true e dados de erro obrigatórios sem discriminar os estados. não é uma verificação suficiente.",
+        "reviewLessons": [
+          14,
+          15
+        ]
+      },
+      {
+        "id": "q2",
+        "prompt": "Na defesa de Motor tipado de pedidos e validação de entrada, como você justifica a decisão de Unknown e validação real?",
+        "options": [
+          "O contrato pode ser presumido sem observar o resultado.",
+          "A aparência isolada comprova o comportamento e todos os casos de erro.",
+          "Unknown exige prova antes do uso. Valide estrutura, tipo e regra de domínio de cada dado externo.",
+          "Usar JSON.parse seguido de as Pedido como se isso validasse o conteúdo."
+        ],
+        "answer": 2,
+        "explanation": "Unknown exige prova antes do uso. Valide estrutura, tipo e regra de domínio de cada dado externo. Compare o contrato com a entrada e com a evidência observada; usar JSON.parse seguido de as Pedido como se isso validasse o conteúdo. não é uma verificação suficiente.",
+        "reviewLessons": [
+          26,
+          27
+        ]
+      },
+      {
+        "id": "q3",
+        "prompt": "Na defesa de Motor tipado de pedidos e validação de entrada, como você justifica a decisão de Tipos condicionais e testes de contrato?",
+        "options": [
+          "A aparência isolada comprova o comportamento e todos os casos de erro.",
+          "Tipos condicionais expressam relações, mas não substituem funções de validação nem testes de execução.",
+          "Tornar o tipo público tão complexo que o consumidor precisa de assertions para utilizá-lo.",
+          "O contrato pode ser presumido sem observar o resultado."
+        ],
+        "answer": 1,
+        "explanation": "Tipos condicionais expressam relações, mas não substituem funções de validação nem testes de execução. Compare o contrato com a entrada e com a evidência observada; tornar o tipo público tão complexo que o consumidor precisa de assertions para utilizá-lo. não é uma verificação suficiente.",
+        "reviewLessons": [
+          35,
+          36
+        ]
+      }
+    ]
+  }
+}

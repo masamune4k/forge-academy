@@ -1,0 +1,437 @@
+{
+  "courseId": "vite",
+  "combos": [
+    {
+      "id": "combo-1",
+      "title": "Vite: integração 1",
+      "scenario": "Una a estrutura, as entradas e a interação inicial em uma entrega pequena.",
+      "requiredLessons": [
+        2,
+        3,
+        5,
+        6,
+        8,
+        9
+      ],
+      "skills": [
+        "Projeto e ciclo de desenvolvimento",
+        "ESM e grafo de dependências",
+        "CSS e isolamento"
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "No cenário \"Una a estrutura, as entradas e a interação inicial em uma entrega pequena.\" você precisa combinar Projeto e ciclo de desenvolvimento, ESM e grafo de dependências, CSS e isolamento. Para a parte Projeto e ciclo de desenvolvimento, qual decisão conserva o contrato?",
+          "options": [
+            "Vite fornece servidor de desenvolvimento e build. O entry HTML faz parte do projeto e o lockfile registra dependências resolvidas.",
+            "Abrir index.html por file:// e esperar todas as funções do servidor Vite.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro."
+          ],
+          "answer": 0,
+          "explanation": "Vite fornece servidor de desenvolvimento e build. O entry HTML faz parte do projeto e o lockfile registra dependências resolvidas. Compare o contrato com a entrada e com a evidência observada; abrir index.html por file:// e esperar todas as funções do servidor Vite. não é uma verificação suficiente.",
+          "reviewLessons": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "q2",
+          "prompt": "No cenário \"Una a estrutura, as entradas e a interação inicial em uma entrega pequena.\" você precisa combinar Projeto e ciclo de desenvolvimento, ESM e grafo de dependências, CSS e isolamento. Para a parte ESM e grafo de dependências, qual decisão conserva o contrato?",
+          "options": [
+            "Supor que um alias definido no editor também configura o bundler.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Imports estáticos formam o grafo de módulos; caminhos são resolvidos pelo ambiente de build."
+          ],
+          "answer": 3,
+          "explanation": "Imports estáticos formam o grafo de módulos; caminhos são resolvidos pelo ambiente de build. Compare o contrato com a entrada e com a evidência observada; supor que um alias definido no editor também configura o bundler. não é uma verificação suficiente.",
+          "reviewLessons": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "q3",
+          "prompt": "No cenário \"Una a estrutura, as entradas e a interação inicial em uma entrega pequena.\" você precisa combinar Projeto e ciclo de desenvolvimento, ESM e grafo de dependências, CSS e isolamento. Para a parte CSS e isolamento, qual decisão conserva o contrato?",
+          "options": [
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "CSS importado entra no grafo do build. CSS Modules permite nomes locais, mas não substitui semântica nem acessibilidade.",
+            "Usar uma classe global esperando que o arquivo .module.css a trate como global automaticamente."
+          ],
+          "answer": 2,
+          "explanation": "CSS importado entra no grafo do build. CSS Modules permite nomes locais, mas não substitui semântica nem acessibilidade. Compare o contrato com a entrada e com a evidência observada; usar uma classe global esperando que o arquivo .module.css a trate como global automaticamente. não é uma verificação suficiente.",
+          "reviewLessons": [
+            8,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "id": "combo-2",
+      "title": "Vite: integração 2",
+      "scenario": "Evolua a entrega para tratar mudanças e casos de fronteira sem perder os contratos anteriores.",
+      "requiredLessons": [
+        11,
+        12,
+        14,
+        15,
+        17,
+        18
+      ],
+      "skills": [
+        "Assets e caminhos públicos",
+        "Variáveis e fronteira de segredos",
+        "Configuração e plugins"
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "No cenário \"Evolua a entrega para tratar mudanças e casos de fronteira sem perder os contratos anteriores.\" você precisa combinar Assets e caminhos públicos, Variáveis e fronteira de segredos, Configuração e plugins. Para a parte Assets e caminhos públicos, qual decisão conserva o contrato?",
+          "options": [
+            "Usar caminhos absolutos de raiz em uma aplicação publicada dentro de subdiretório.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Assets importados são processados; public mantém nomes estáveis. Configure base para o caminho em que a aplicação realmente será servida."
+          ],
+          "answer": 3,
+          "explanation": "Assets importados são processados; public mantém nomes estáveis. Configure base para o caminho em que a aplicação realmente será servida. Compare o contrato com a entrada e com a evidência observada; usar caminhos absolutos de raiz em uma aplicação publicada dentro de subdiretório. não é uma verificação suficiente.",
+          "reviewLessons": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": "q2",
+          "prompt": "No cenário \"Evolua a entrega para tratar mudanças e casos de fronteira sem perder os contratos anteriores.\" você precisa combinar Assets e caminhos públicos, Variáveis e fronteira de segredos, Configuração e plugins. Para a parte Variáveis e fronteira de segredos, qual decisão conserva o contrato?",
+          "options": [
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Valores VITE_ são expostos ao cliente e são strings; não coloque credenciais neles. Valide números e booleanos explicitamente.",
+            "Guardar uma senha de banco em VITE_DATABASE_PASSWORD."
+          ],
+          "answer": 2,
+          "explanation": "Valores VITE_ são expostos ao cliente e são strings; não coloque credenciais neles. Valide números e booleanos explicitamente. Compare o contrato com a entrada e com a evidência observada; guardar uma senha de banco em VITE_DATABASE_PASSWORD. não é uma verificação suficiente.",
+          "reviewLessons": [
+            14,
+            15
+          ]
+        },
+        {
+          "id": "q3",
+          "prompt": "No cenário \"Evolua a entrega para tratar mudanças e casos de fronteira sem perder os contratos anteriores.\" você precisa combinar Assets e caminhos públicos, Variáveis e fronteira de segredos, Configuração e plugins. Para a parte Configuração e plugins, qual decisão conserva o contrato?",
+          "options": [
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "A configuração descreve plugins e transformações; cada plugin deve ter uma responsabilidade verificável.",
+            "Adicionar plugins sem medir a necessidade ou conferir compatibilidade com a versão do Vite.",
+            "O contrato pode ser presumido sem observar o resultado."
+          ],
+          "answer": 1,
+          "explanation": "A configuração descreve plugins e transformações; cada plugin deve ter uma responsabilidade verificável. Compare o contrato com a entrada e com a evidência observada; adicionar plugins sem medir a necessidade ou conferir compatibilidade com a versão do Vite. não é uma verificação suficiente.",
+          "reviewLessons": [
+            17,
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "id": "combo-3",
+      "title": "Vite: integração 3",
+      "scenario": "Integre estados de falha, comunicação e recuperação; comprove o comportamento em uma reprodução controlada.",
+      "requiredLessons": [
+        20,
+        21,
+        23,
+        24,
+        26,
+        27
+      ],
+      "skills": [
+        "Proxy e contrato HTTP",
+        "Import dinâmico e carregamento",
+        "TypeScript e checagem separada"
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "No cenário \"Integre estados de falha, comunicação e recuperação; comprove o comportamento em uma reprodução controlada.\" você precisa combinar Proxy e contrato HTTP, Import dinâmico e carregamento, TypeScript e checagem separada. Para a parte Proxy e contrato HTTP, qual decisão conserva o contrato?",
+          "options": [
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "O proxy do servidor de desenvolvimento não é o backend da produção nem resolve autenticação ou CORS em todos os ambientes.",
+            "Concluir que server.proxy será incluído automaticamente no JavaScript de produção."
+          ],
+          "answer": 2,
+          "explanation": "O proxy do servidor de desenvolvimento não é o backend da produção nem resolve autenticação ou CORS em todos os ambientes. Compare o contrato com a entrada e com a evidência observada; concluir que server.proxy será incluído automaticamente no JavaScript de produção. não é uma verificação suficiente.",
+          "reviewLessons": [
+            20,
+            21
+          ]
+        },
+        {
+          "id": "q2",
+          "prompt": "No cenário \"Integre estados de falha, comunicação e recuperação; comprove o comportamento em uma reprodução controlada.\" você precisa combinar Proxy e contrato HTTP, Import dinâmico e carregamento, TypeScript e checagem separada. Para a parte Import dinâmico e carregamento, qual decisão conserva o contrato?",
+          "options": [
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Um import dinâmico de arquivo separado permite criar uma fronteira de carregamento. Verifique o resultado no bundle em vez de presumir divisão.",
+            "Medir apenas tamanho do fonte, ignorando os arquivos produzidos e a rede.",
+            "O contrato pode ser presumido sem observar o resultado."
+          ],
+          "answer": 1,
+          "explanation": "Um import dinâmico de arquivo separado permite criar uma fronteira de carregamento. Verifique o resultado no bundle em vez de presumir divisão. Compare o contrato com a entrada e com a evidência observada; medir apenas tamanho do fonte, ignorando os arquivos produzidos e a rede. não é uma verificação suficiente.",
+          "reviewLessons": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "q3",
+          "prompt": "No cenário \"Integre estados de falha, comunicação e recuperação; comprove o comportamento em uma reprodução controlada.\" você precisa combinar Proxy e contrato HTTP, Import dinâmico e carregamento, TypeScript e checagem separada. Para a parte TypeScript e checagem separada, qual decisão conserva o contrato?",
+          "options": [
+            "Transpilar sintaxe TypeScript não equivale a verificar os tipos. Execute tsc com noEmit como etapa própria.",
+            "Considerar um build concluído como prova de ausência de erros de tipos.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro."
+          ],
+          "answer": 0,
+          "explanation": "Transpilar sintaxe TypeScript não equivale a verificar os tipos. Execute tsc com noEmit como etapa própria. Compare o contrato com a entrada e com a evidência observada; considerar um build concluído como prova de ausência de erros de tipos. não é uma verificação suficiente.",
+          "reviewLessons": [
+            26,
+            27
+          ]
+        }
+      ]
+    },
+    {
+      "id": "combo-4",
+      "title": "Vite: integração 4",
+      "scenario": "Prepare uma entrega reproduzível, com diagnóstico, revisão e limites de operação documentados.",
+      "requiredLessons": [
+        29,
+        30,
+        32,
+        33,
+        35,
+        36
+      ],
+      "skills": [
+        "Testes e modos",
+        "Build, preview e hospedagem",
+        "SSR, fronteiras e diagnóstico"
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "No cenário \"Prepare uma entrega reproduzível, com diagnóstico, revisão e limites de operação documentados.\" você precisa combinar Testes e modos, Build, preview e hospedagem, SSR, fronteiras e diagnóstico. Para a parte Testes e modos, qual decisão conserva o contrato?",
+          "options": [
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Um runner de testes precisa de configuração e ambientes coerentes. O modo de build influencia arquivos de ambiente, mas não cria proteção para segredos.",
+            "Assumir que NODE_ENV e mode são a mesma variável em todos os comandos.",
+            "O contrato pode ser presumido sem observar o resultado."
+          ],
+          "answer": 1,
+          "explanation": "Um runner de testes precisa de configuração e ambientes coerentes. O modo de build influencia arquivos de ambiente, mas não cria proteção para segredos. Compare o contrato com a entrada e com a evidência observada; assumir que NODE_ENV e mode são a mesma variável em todos os comandos. não é uma verificação suficiente.",
+          "reviewLessons": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "q2",
+          "prompt": "No cenário \"Prepare uma entrega reproduzível, com diagnóstico, revisão e limites de operação documentados.\" você precisa combinar Testes e modos, Build, preview e hospedagem, SSR, fronteiras e diagnóstico. Para a parte Build, preview e hospedagem, qual decisão conserva o contrato?",
+          "options": [
+            "vite preview verifica localmente a saída do build; a publicação exige um servidor ou serviço apropriado para os artefatos.",
+            "Usar preview como se fosse um servidor de produção com políticas operacionais prontas.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro."
+          ],
+          "answer": 0,
+          "explanation": "vite preview verifica localmente a saída do build; a publicação exige um servidor ou serviço apropriado para os artefatos. Compare o contrato com a entrada e com a evidência observada; usar preview como se fosse um servidor de produção com políticas operacionais prontas. não é uma verificação suficiente.",
+          "reviewLessons": [
+            32,
+            33
+          ]
+        },
+        {
+          "id": "q3",
+          "prompt": "No cenário \"Prepare uma entrega reproduzível, com diagnóstico, revisão e limites de operação documentados.\" você precisa combinar Testes e modos, Build, preview e hospedagem, SSR, fronteiras e diagnóstico. Para a parte SSR, fronteiras e diagnóstico, qual decisão conserva o contrato?",
+          "options": [
+            "Ler document em código executado também no servidor.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "SSR envolve execução no servidor e no cliente. APIs DOM não existem durante a renderização no servidor e dados privados não devem vazar pela hidratação."
+          ],
+          "answer": 3,
+          "explanation": "SSR envolve execução no servidor e no cliente. APIs DOM não existem durante a renderização no servidor e dados privados não devem vazar pela hidratação. Compare o contrato com a entrada e com a evidência observada; ler document em código executado também no servidor. não é uma verificação suficiente.",
+          "reviewLessons": [
+            35,
+            36
+          ]
+        }
+      ]
+    }
+  ],
+  "finalProject": {
+    "id": "final",
+    "title": "Catálogo web reproduzível com build e publicação",
+    "scenario": "Consolide os incrementos dos 12 módulos em uma única entrega verificável, usando dados fictícios e explicando os contratos e limites.",
+    "requirements": [
+      "Organizar catálogo em módulos ESM e CSS com recursos locais.",
+      "Configurar caminhos de assets para publicação em subdiretório.",
+      "Usar apenas configurações públicas no cliente, sem segredos em VITE_.",
+      "Documentar a comunicação com API em desenvolvimento e em produção.",
+      "Executar a checagem de tipos e testes separadamente do build.",
+      "Comprovar instalação pelo lockfile, build reproduzível e teste do artefato em servidor estático."
+    ],
+    "deliverables": [
+      "Código ou repositório do laboratório completo.",
+      "README com ambiente, instalação, execução e decisões.",
+      "Evidências dos casos normais, de fronteira e de falha.",
+      "Relatório de revisão com limitações e próximos passos."
+    ],
+    "rubric": [
+      {
+        "id": "r1",
+        "title": "Critério 1",
+        "description": "Organizar catálogo em módulos ESM e CSS com recursos locais.",
+        "reviewLessons": [
+          3,
+          6
+        ]
+      },
+      {
+        "id": "r2",
+        "title": "Critério 2",
+        "description": "Configurar caminhos de assets para publicação em subdiretório.",
+        "reviewLessons": [
+          9,
+          12
+        ]
+      },
+      {
+        "id": "r3",
+        "title": "Critério 3",
+        "description": "Usar apenas configurações públicas no cliente, sem segredos em VITE_.",
+        "reviewLessons": [
+          15,
+          18
+        ]
+      },
+      {
+        "id": "r4",
+        "title": "Critério 4",
+        "description": "Documentar a comunicação com API em desenvolvimento e em produção.",
+        "reviewLessons": [
+          21,
+          24
+        ]
+      },
+      {
+        "id": "r5",
+        "title": "Critério 5",
+        "description": "Executar a checagem de tipos e testes separadamente do build.",
+        "reviewLessons": [
+          27,
+          30
+        ]
+      },
+      {
+        "id": "r6",
+        "title": "Critério 6",
+        "description": "Comprovar instalação pelo lockfile, build reproduzível e teste do artefato em servidor estático.",
+        "reviewLessons": [
+          33,
+          36
+        ]
+      }
+    ],
+    "acceptance": [
+      {
+        "title": "Fluxo principal",
+        "setup": "Prepare a entrega em ambiente limpo conforme o README.",
+        "input": "Execute a operação principal e percorra os seis requisitos.",
+        "expected": "O comportamento observado corresponde aos requisitos e pode ser reproduzido por outra pessoa.",
+        "reviewLessons": [
+          3,
+          9,
+          18
+        ]
+      },
+      {
+        "title": "Fronteira e falha",
+        "setup": "Use uma cópia do laboratório e uma entrada inválida ou condição de erro documentada.",
+        "input": "Provoque a condição de erro, registre o resultado e aplique a recuperação prevista.",
+        "expected": "A falha é compreensível, não corrompe o estado válido e o relatório explica a responsabilidade de cada camada.",
+        "reviewLessons": [
+          12,
+          21,
+          27
+        ]
+      },
+      {
+        "title": "Entrega reproduzível",
+        "setup": "Comece em nova pasta ou clone limpo, sem caches e sem arquivos privados.",
+        "input": "Siga os comandos e inspeções do README até a versão final.",
+        "expected": "Os artefatos e evidências correspondem à versão entregue; nenhuma senha ou dado real foi incluído.",
+        "reviewLessons": [
+          30,
+          33,
+          36
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Na defesa de Catálogo web reproduzível com build e publicação, como você justifica a decisão de Variáveis e fronteira de segredos?",
+        "options": [
+          "Guardar uma senha de banco em VITE_DATABASE_PASSWORD.",
+          "O contrato pode ser presumido sem observar o resultado.",
+          "A aparência isolada comprova o comportamento e todos os casos de erro.",
+          "Valores VITE_ são expostos ao cliente e são strings; não coloque credenciais neles. Valide números e booleanos explicitamente."
+        ],
+        "answer": 3,
+        "explanation": "Valores VITE_ são expostos ao cliente e são strings; não coloque credenciais neles. Valide números e booleanos explicitamente. Compare o contrato com a entrada e com a evidência observada; guardar uma senha de banco em VITE_DATABASE_PASSWORD. não é uma verificação suficiente.",
+        "reviewLessons": [
+          14,
+          15
+        ]
+      },
+      {
+        "id": "q2",
+        "prompt": "Na defesa de Catálogo web reproduzível com build e publicação, como você justifica a decisão de TypeScript e checagem separada?",
+        "options": [
+          "O contrato pode ser presumido sem observar o resultado.",
+          "A aparência isolada comprova o comportamento e todos os casos de erro.",
+          "Transpilar sintaxe TypeScript não equivale a verificar os tipos. Execute tsc com noEmit como etapa própria.",
+          "Considerar um build concluído como prova de ausência de erros de tipos."
+        ],
+        "answer": 2,
+        "explanation": "Transpilar sintaxe TypeScript não equivale a verificar os tipos. Execute tsc com noEmit como etapa própria. Compare o contrato com a entrada e com a evidência observada; considerar um build concluído como prova de ausência de erros de tipos. não é uma verificação suficiente.",
+        "reviewLessons": [
+          26,
+          27
+        ]
+      },
+      {
+        "id": "q3",
+        "prompt": "Na defesa de Catálogo web reproduzível com build e publicação, como você justifica a decisão de SSR, fronteiras e diagnóstico?",
+        "options": [
+          "A aparência isolada comprova o comportamento e todos os casos de erro.",
+          "SSR envolve execução no servidor e no cliente. APIs DOM não existem durante a renderização no servidor e dados privados não devem vazar pela hidratação.",
+          "Ler document em código executado também no servidor.",
+          "O contrato pode ser presumido sem observar o resultado."
+        ],
+        "answer": 1,
+        "explanation": "SSR envolve execução no servidor e no cliente. APIs DOM não existem durante a renderização no servidor e dados privados não devem vazar pela hidratação. Compare o contrato com a entrada e com a evidência observada; ler document em código executado também no servidor. não é uma verificação suficiente.",
+        "reviewLessons": [
+          35,
+          36
+        ]
+      }
+    ]
+  }
+}

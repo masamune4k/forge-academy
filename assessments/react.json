@@ -1,0 +1,437 @@
+{
+  "courseId": "react",
+  "combos": [
+    {
+      "id": "combo-1",
+      "title": "React: integração 1",
+      "scenario": "Una a estrutura, as entradas e a interação inicial em uma entrega pequena.",
+      "requiredLessons": [
+        2,
+        3,
+        5,
+        6,
+        8,
+        9
+      ],
+      "skills": [
+        "Componentes e JSX",
+        "Props e composição",
+        "Estado e eventos"
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "No cenário \"Una a estrutura, as entradas e a interação inicial em uma entrega pequena.\" você precisa combinar Componentes e JSX, Props e composição, Estado e eventos. Para a parte Componentes e JSX, qual decisão conserva o contrato?",
+          "options": [
+            "Componentes são funções puras que descrevem a interface. JSX exige expressões entre chaves e nomes de componentes com inicial maiúscula.",
+            "Chamar uma função com efeitos colaterais enquanto o componente renderiza.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro."
+          ],
+          "answer": 0,
+          "explanation": "Componentes são funções puras que descrevem a interface. JSX exige expressões entre chaves e nomes de componentes com inicial maiúscula. Compare o contrato com a entrada e com a evidência observada; chamar uma função com efeitos colaterais enquanto o componente renderiza. não é uma verificação suficiente.",
+          "reviewLessons": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "q2",
+          "prompt": "No cenário \"Una a estrutura, as entradas e a interação inicial em uma entrega pequena.\" você precisa combinar Componentes e JSX, Props e composição, Estado e eventos. Para a parte Props e composição, qual decisão conserva o contrato?",
+          "options": [
+            "Alterar diretamente um objeto recebido por props.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Props são entradas somente de leitura; children permite compor conteúdo sem duplicar a estrutura."
+          ],
+          "answer": 3,
+          "explanation": "Props são entradas somente de leitura; children permite compor conteúdo sem duplicar a estrutura. Compare o contrato com a entrada e com a evidência observada; alterar diretamente um objeto recebido por props. não é uma verificação suficiente.",
+          "reviewLessons": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "q3",
+          "prompt": "No cenário \"Una a estrutura, as entradas e a interação inicial em uma entrega pequena.\" você precisa combinar Componentes e JSX, Props e composição, Estado e eventos. Para a parte Estado e eventos, qual decisão conserva o contrato?",
+          "options": [
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Uma atualização de estado agenda uma nova renderização. Use a forma funcional quando o próximo valor depende do anterior.",
+            "Esperar que duas chamadas setN(n+1) acumulem sobre o mesmo snapshot."
+          ],
+          "answer": 2,
+          "explanation": "Uma atualização de estado agenda uma nova renderização. Use a forma funcional quando o próximo valor depende do anterior. Compare o contrato com a entrada e com a evidência observada; esperar que duas chamadas setN(n+1) acumulem sobre o mesmo snapshot. não é uma verificação suficiente.",
+          "reviewLessons": [
+            8,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "id": "combo-2",
+      "title": "React: integração 2",
+      "scenario": "Evolua a entrega para tratar mudanças e casos de fronteira sem perder os contratos anteriores.",
+      "requiredLessons": [
+        11,
+        12,
+        14,
+        15,
+        17,
+        18
+      ],
+      "skills": [
+        "Listas, identidade e imutabilidade",
+        "Formulários acessíveis",
+        "Estado derivado e reducer"
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "No cenário \"Evolua a entrega para tratar mudanças e casos de fronteira sem perder os contratos anteriores.\" você precisa combinar Listas, identidade e imutabilidade, Formulários acessíveis, Estado derivado e reducer. Para a parte Listas, identidade e imutabilidade, qual decisão conserva o contrato?",
+          "options": [
+            "Usar o índice como key em uma lista que permite exclusão e reordenação.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Keys estáveis identificam itens entre renderizações. Atualize arrays criando uma coleção nova e preserve os IDs do domínio."
+          ],
+          "answer": 3,
+          "explanation": "Keys estáveis identificam itens entre renderizações. Atualize arrays criando uma coleção nova e preserve os IDs do domínio. Compare o contrato com a entrada e com a evidência observada; usar o índice como key em uma lista que permite exclusão e reordenação. não é uma verificação suficiente.",
+          "reviewLessons": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": "q2",
+          "prompt": "No cenário \"Evolua a entrega para tratar mudanças e casos de fronteira sem perder os contratos anteriores.\" você precisa combinar Listas, identidade e imutabilidade, Formulários acessíveis, Estado derivado e reducer. Para a parte Formulários acessíveis, qual decisão conserva o contrato?",
+          "options": [
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Um campo controlado recebe value e onChange. Label, mensagens e envio por teclado fazem parte do comportamento do formulário.",
+            "Tratar placeholder como substituto de um label."
+          ],
+          "answer": 2,
+          "explanation": "Um campo controlado recebe value e onChange. Label, mensagens e envio por teclado fazem parte do comportamento do formulário. Compare o contrato com a entrada e com a evidência observada; tratar placeholder como substituto de um label. não é uma verificação suficiente.",
+          "reviewLessons": [
+            14,
+            15
+          ]
+        },
+        {
+          "id": "q3",
+          "prompt": "No cenário \"Evolua a entrega para tratar mudanças e casos de fronteira sem perder os contratos anteriores.\" você precisa combinar Listas, identidade e imutabilidade, Formulários acessíveis, Estado derivado e reducer. Para a parte Estado derivado e reducer, qual decisão conserva o contrato?",
+          "options": [
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Calcule dados derivados durante a renderização; reducers concentram transições e precisam ser puros.",
+            "Guardar o total derivado em outro estado que pode ficar desatualizado.",
+            "O contrato pode ser presumido sem observar o resultado."
+          ],
+          "answer": 1,
+          "explanation": "Calcule dados derivados durante a renderização; reducers concentram transições e precisam ser puros. Compare o contrato com a entrada e com a evidência observada; guardar o total derivado em outro estado que pode ficar desatualizado. não é uma verificação suficiente.",
+          "reviewLessons": [
+            17,
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "id": "combo-3",
+      "title": "React: integração 3",
+      "scenario": "Integre estados de falha, comunicação e recuperação; comprove o comportamento em uma reprodução controlada.",
+      "requiredLessons": [
+        20,
+        21,
+        23,
+        24,
+        26,
+        27
+      ],
+      "skills": [
+        "Effects e sincronização",
+        "Assincronismo e corrida",
+        "Context e hooks de domínio"
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "No cenário \"Integre estados de falha, comunicação e recuperação; comprove o comportamento em uma reprodução controlada.\" você precisa combinar Effects e sincronização, Assincronismo e corrida, Context e hooks de domínio. Para a parte Effects e sincronização, qual decisão conserva o contrato?",
+          "options": [
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Effects sincronizam com sistemas externos. A limpeza deve desfazer a inscrição; não use effect para copiar valores derivados para outro estado.",
+            "Omitir dependências ou a limpeza para silenciar um problema."
+          ],
+          "answer": 2,
+          "explanation": "Effects sincronizam com sistemas externos. A limpeza deve desfazer a inscrição; não use effect para copiar valores derivados para outro estado. Compare o contrato com a entrada e com a evidência observada; omitir dependências ou a limpeza para silenciar um problema. não é uma verificação suficiente.",
+          "reviewLessons": [
+            20,
+            21
+          ]
+        },
+        {
+          "id": "q2",
+          "prompt": "No cenário \"Integre estados de falha, comunicação e recuperação; comprove o comportamento em uma reprodução controlada.\" você precisa combinar Effects e sincronização, Assincronismo e corrida, Context e hooks de domínio. Para a parte Assincronismo e corrida, qual decisão conserva o contrato?",
+          "options": [
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Uma resposta antiga não pode substituir a consulta mais recente. Cancele a requisição e represente carregamento, erro, vazio e sucesso explicitamente.",
+            "Tratar qualquer resposta HTTP como sucesso antes de consultar ok.",
+            "O contrato pode ser presumido sem observar o resultado."
+          ],
+          "answer": 1,
+          "explanation": "Uma resposta antiga não pode substituir a consulta mais recente. Cancele a requisição e represente carregamento, erro, vazio e sucesso explicitamente. Compare o contrato com a entrada e com a evidência observada; tratar qualquer resposta HTTP como sucesso antes de consultar ok. não é uma verificação suficiente.",
+          "reviewLessons": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "q3",
+          "prompt": "No cenário \"Integre estados de falha, comunicação e recuperação; comprove o comportamento em uma reprodução controlada.\" você precisa combinar Effects e sincronização, Assincronismo e corrida, Context e hooks de domínio. Para a parte Context e hooks de domínio, qual decisão conserva o contrato?",
+          "options": [
+            "Context distribui uma dependência compartilhada; um hook pode encapsular o contrato. Estado de formulário local não precisa virar estado global.",
+            "Usar um único contexto para todas as mudanças da aplicação sem medir suas consequências.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro."
+          ],
+          "answer": 0,
+          "explanation": "Context distribui uma dependência compartilhada; um hook pode encapsular o contrato. Estado de formulário local não precisa virar estado global. Compare o contrato com a entrada e com a evidência observada; usar um único contexto para todas as mudanças da aplicação sem medir suas consequências. não é uma verificação suficiente.",
+          "reviewLessons": [
+            26,
+            27
+          ]
+        }
+      ]
+    },
+    {
+      "id": "combo-4",
+      "title": "React: integração 4",
+      "scenario": "Prepare uma entrega reproduzível, com diagnóstico, revisão e limites de operação documentados.",
+      "requiredLessons": [
+        29,
+        30,
+        32,
+        33,
+        35,
+        36
+      ],
+      "skills": [
+        "Refs, foco e navegação",
+        "Testes e limites de erro",
+        "Arquitetura, desempenho e entrega"
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "No cenário \"Prepare uma entrega reproduzível, com diagnóstico, revisão e limites de operação documentados.\" você precisa combinar Refs, foco e navegação, Testes e limites de erro, Arquitetura, desempenho e entrega. Para a parte Refs, foco e navegação, qual decisão conserva o contrato?",
+          "options": [
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Refs preservam acesso ao elemento sem solicitar renderização. Após ações que mudam o contexto, planeje foco e preserve links reais para navegação.",
+            "Guardar o valor visível apenas em ref e esperar que a interface se atualize.",
+            "O contrato pode ser presumido sem observar o resultado."
+          ],
+          "answer": 1,
+          "explanation": "Refs preservam acesso ao elemento sem solicitar renderização. Após ações que mudam o contexto, planeje foco e preserve links reais para navegação. Compare o contrato com a entrada e com a evidência observada; guardar o valor visível apenas em ref e esperar que a interface se atualize. não é uma verificação suficiente.",
+          "reviewLessons": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "q2",
+          "prompt": "No cenário \"Prepare uma entrega reproduzível, com diagnóstico, revisão e limites de operação documentados.\" você precisa combinar Refs, foco e navegação, Testes e limites de erro, Arquitetura, desempenho e entrega. Para a parte Testes e limites de erro, qual decisão conserva o contrato?",
+          "options": [
+            "Verifique interações pelo comportamento que o usuário observa. Error boundaries tratam falhas de renderização de descendentes; erros de eventos e requisições exigem tratamento próprio.",
+            "Supor que um error boundary captura toda rejeição de fetch ou erro em onClick.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro."
+          ],
+          "answer": 0,
+          "explanation": "Verifique interações pelo comportamento que o usuário observa. Error boundaries tratam falhas de renderização de descendentes; erros de eventos e requisições exigem tratamento próprio. Compare o contrato com a entrada e com a evidência observada; supor que um error boundary captura toda rejeição de fetch ou erro em onClick. não é uma verificação suficiente.",
+          "reviewLessons": [
+            32,
+            33
+          ]
+        },
+        {
+          "id": "q3",
+          "prompt": "No cenário \"Prepare uma entrega reproduzível, com diagnóstico, revisão e limites de operação documentados.\" você precisa combinar Refs, foco e navegação, Testes e limites de erro, Arquitetura, desempenho e entrega. Para a parte Arquitetura, desempenho e entrega, qual decisão conserva o contrato?",
+          "options": [
+            "Afirmar melhoria de bundle sem usar import dinâmico de um módulo separado e sem medir.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Separe estado por responsabilidade e meça antes de memorizar. Acessibilidade, testes, observação de falhas e build reproduzível fazem parte da entrega."
+          ],
+          "answer": 3,
+          "explanation": "Separe estado por responsabilidade e meça antes de memorizar. Acessibilidade, testes, observação de falhas e build reproduzível fazem parte da entrega. Compare o contrato com a entrada e com a evidência observada; afirmar melhoria de bundle sem usar import dinâmico de um módulo separado e sem medir. não é uma verificação suficiente.",
+          "reviewLessons": [
+            35,
+            36
+          ]
+        }
+      ]
+    }
+  ],
+  "finalProject": {
+    "id": "final",
+    "title": "Painel de estudos acessível em React",
+    "scenario": "Consolide os incrementos dos 12 módulos em uma única entrega verificável, usando dados fictícios e explicando os contratos e limites.",
+    "requirements": [
+      "Catálogo de estudos com componentes, props e identidade estável dos itens.",
+      "Adicionar, editar e concluir atividades com transições previsíveis e atualização imutável.",
+      "Formulário acessível com validação, mensagens e navegação por teclado.",
+      "Consulta a uma API simulada, exibindo carregamento, vazio, erro e sucesso sem corrida entre respostas.",
+      "Organização por responsabilidade, limpeza de efeitos e foco previsível.",
+      "Testes das interações, build com Vite e explicação das decisões em TypeScript."
+    ],
+    "deliverables": [
+      "Código ou repositório do laboratório completo.",
+      "README com ambiente, instalação, execução e decisões.",
+      "Evidências dos casos normais, de fronteira e de falha.",
+      "Relatório de revisão com limitações e próximos passos."
+    ],
+    "rubric": [
+      {
+        "id": "r1",
+        "title": "Critério 1",
+        "description": "Catálogo de estudos com componentes, props e identidade estável dos itens.",
+        "reviewLessons": [
+          3,
+          6
+        ]
+      },
+      {
+        "id": "r2",
+        "title": "Critério 2",
+        "description": "Adicionar, editar e concluir atividades com transições previsíveis e atualização imutável.",
+        "reviewLessons": [
+          9,
+          12
+        ]
+      },
+      {
+        "id": "r3",
+        "title": "Critério 3",
+        "description": "Formulário acessível com validação, mensagens e navegação por teclado.",
+        "reviewLessons": [
+          15,
+          18
+        ]
+      },
+      {
+        "id": "r4",
+        "title": "Critério 4",
+        "description": "Consulta a uma API simulada, exibindo carregamento, vazio, erro e sucesso sem corrida entre respostas.",
+        "reviewLessons": [
+          21,
+          24
+        ]
+      },
+      {
+        "id": "r5",
+        "title": "Critério 5",
+        "description": "Organização por responsabilidade, limpeza de efeitos e foco previsível.",
+        "reviewLessons": [
+          27,
+          30
+        ]
+      },
+      {
+        "id": "r6",
+        "title": "Critério 6",
+        "description": "Testes das interações, build com Vite e explicação das decisões em TypeScript.",
+        "reviewLessons": [
+          33,
+          36
+        ]
+      }
+    ],
+    "acceptance": [
+      {
+        "title": "Fluxo principal",
+        "setup": "Prepare a entrega em ambiente limpo conforme o README.",
+        "input": "Execute a operação principal e percorra os seis requisitos.",
+        "expected": "O comportamento observado corresponde aos requisitos e pode ser reproduzido por outra pessoa.",
+        "reviewLessons": [
+          3,
+          9,
+          18
+        ]
+      },
+      {
+        "title": "Fronteira e falha",
+        "setup": "Use uma cópia do laboratório e uma entrada inválida ou condição de erro documentada.",
+        "input": "Provoque a condição de erro, registre o resultado e aplique a recuperação prevista.",
+        "expected": "A falha é compreensível, não corrompe o estado válido e o relatório explica a responsabilidade de cada camada.",
+        "reviewLessons": [
+          12,
+          21,
+          27
+        ]
+      },
+      {
+        "title": "Entrega reproduzível",
+        "setup": "Comece em nova pasta ou clone limpo, sem caches e sem arquivos privados.",
+        "input": "Siga os comandos e inspeções do README até a versão final.",
+        "expected": "Os artefatos e evidências correspondem à versão entregue; nenhuma senha ou dado real foi incluído.",
+        "reviewLessons": [
+          30,
+          33,
+          36
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Na defesa de Painel de estudos acessível em React, como você justifica a decisão de Formulários acessíveis?",
+        "options": [
+          "Tratar placeholder como substituto de um label.",
+          "O contrato pode ser presumido sem observar o resultado.",
+          "A aparência isolada comprova o comportamento e todos os casos de erro.",
+          "Um campo controlado recebe value e onChange. Label, mensagens e envio por teclado fazem parte do comportamento do formulário."
+        ],
+        "answer": 3,
+        "explanation": "Um campo controlado recebe value e onChange. Label, mensagens e envio por teclado fazem parte do comportamento do formulário. Compare o contrato com a entrada e com a evidência observada; tratar placeholder como substituto de um label. não é uma verificação suficiente.",
+        "reviewLessons": [
+          14,
+          15
+        ]
+      },
+      {
+        "id": "q2",
+        "prompt": "Na defesa de Painel de estudos acessível em React, como você justifica a decisão de Context e hooks de domínio?",
+        "options": [
+          "O contrato pode ser presumido sem observar o resultado.",
+          "A aparência isolada comprova o comportamento e todos os casos de erro.",
+          "Context distribui uma dependência compartilhada; um hook pode encapsular o contrato. Estado de formulário local não precisa virar estado global.",
+          "Usar um único contexto para todas as mudanças da aplicação sem medir suas consequências."
+        ],
+        "answer": 2,
+        "explanation": "Context distribui uma dependência compartilhada; um hook pode encapsular o contrato. Estado de formulário local não precisa virar estado global. Compare o contrato com a entrada e com a evidência observada; usar um único contexto para todas as mudanças da aplicação sem medir suas consequências. não é uma verificação suficiente.",
+        "reviewLessons": [
+          26,
+          27
+        ]
+      },
+      {
+        "id": "q3",
+        "prompt": "Na defesa de Painel de estudos acessível em React, como você justifica a decisão de Arquitetura, desempenho e entrega?",
+        "options": [
+          "A aparência isolada comprova o comportamento e todos os casos de erro.",
+          "Separe estado por responsabilidade e meça antes de memorizar. Acessibilidade, testes, observação de falhas e build reproduzível fazem parte da entrega.",
+          "Afirmar melhoria de bundle sem usar import dinâmico de um módulo separado e sem medir.",
+          "O contrato pode ser presumido sem observar o resultado."
+        ],
+        "answer": 1,
+        "explanation": "Separe estado por responsabilidade e meça antes de memorizar. Acessibilidade, testes, observação de falhas e build reproduzível fazem parte da entrega. Compare o contrato com a entrada e com a evidência observada; afirmar melhoria de bundle sem usar import dinâmico de um módulo separado e sem medir. não é uma verificação suficiente.",
+        "reviewLessons": [
+          35,
+          36
+        ]
+      }
+    ]
+  }
+}

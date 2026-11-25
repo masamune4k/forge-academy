@@ -1,0 +1,437 @@
+{
+  "courseId": "git",
+  "combos": [
+    {
+      "id": "combo-1",
+      "title": "Git e GitHub: integração 1",
+      "scenario": "Una a estrutura, as entradas e a interação inicial em uma entrega pequena.",
+      "requiredLessons": [
+        2,
+        3,
+        5,
+        6,
+        8,
+        9
+      ],
+      "skills": [
+        "Repositório e status",
+        "Staging e commit",
+        "Diff e investigação"
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "No cenário \"Una a estrutura, as entradas e a interação inicial em uma entrega pequena.\" você precisa combinar Repositório e status, Staging e commit, Diff e investigação. Para a parte Repositório e status, qual decisão conserva o contrato?",
+          "options": [
+            "Git versiona snapshots do conteúdo rastreado; status distingue arquivos novos, alterados e preparados.",
+            "Supor que criar um arquivo já o colocou no histórico.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro."
+          ],
+          "answer": 0,
+          "explanation": "Git versiona snapshots do conteúdo rastreado; status distingue arquivos novos, alterados e preparados. Compare o contrato com a entrada e com a evidência observada; supor que criar um arquivo já o colocou no histórico. não é uma verificação suficiente.",
+          "reviewLessons": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "q2",
+          "prompt": "No cenário \"Una a estrutura, as entradas e a interação inicial em uma entrega pequena.\" você precisa combinar Repositório e status, Staging e commit, Diff e investigação. Para a parte Staging e commit, qual decisão conserva o contrato?",
+          "options": [
+            "Usar git add indiscriminadamente sem conferir os arquivos preparados.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "O index representa o próximo snapshot; adicionar e fazer commit são etapas distintas."
+          ],
+          "answer": 3,
+          "explanation": "O index representa o próximo snapshot; adicionar e fazer commit são etapas distintas. Compare o contrato com a entrada e com a evidência observada; usar git add indiscriminadamente sem conferir os arquivos preparados. não é uma verificação suficiente.",
+          "reviewLessons": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "q3",
+          "prompt": "No cenário \"Una a estrutura, as entradas e a interação inicial em uma entrega pequena.\" você precisa combinar Repositório e status, Staging e commit, Diff e investigação. Para a parte Diff e investigação, qual decisão conserva o contrato?",
+          "options": [
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Diff mostra mudanças; log mostra o histórico. A leitura deve preceder decisões de recuperação ou integração.",
+            "Confundir ausência de diff no diretório com ausência de mudanças no index."
+          ],
+          "answer": 2,
+          "explanation": "Diff mostra mudanças; log mostra o histórico. A leitura deve preceder decisões de recuperação ou integração. Compare o contrato com a entrada e com a evidência observada; confundir ausência de diff no diretório com ausência de mudanças no index. não é uma verificação suficiente.",
+          "reviewLessons": [
+            8,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "id": "combo-2",
+      "title": "Git e GitHub: integração 2",
+      "scenario": "Evolua a entrega para tratar mudanças e casos de fronteira sem perder os contratos anteriores.",
+      "requiredLessons": [
+        11,
+        12,
+        14,
+        15,
+        17,
+        18
+      ],
+      "skills": [
+        "Branches e trabalho isolado",
+        "Integração e conflitos",
+        "Remotos e rastreamento"
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "No cenário \"Evolua a entrega para tratar mudanças e casos de fronteira sem perder os contratos anteriores.\" você precisa combinar Branches e trabalho isolado, Integração e conflitos, Remotos e rastreamento. Para a parte Branches e trabalho isolado, qual decisão conserva o contrato?",
+          "options": [
+            "Esperar que mudanças não commitadas pertençam automaticamente a uma branch.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Uma branch é uma referência móvel para um commit, não uma cópia independente de todos os arquivos."
+          ],
+          "answer": 3,
+          "explanation": "Uma branch é uma referência móvel para um commit, não uma cópia independente de todos os arquivos. Compare o contrato com a entrada e com a evidência observada; esperar que mudanças não commitadas pertençam automaticamente a uma branch. não é uma verificação suficiente.",
+          "reviewLessons": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": "q2",
+          "prompt": "No cenário \"Evolua a entrega para tratar mudanças e casos de fronteira sem perder os contratos anteriores.\" você precisa combinar Branches e trabalho isolado, Integração e conflitos, Remotos e rastreamento. Para a parte Integração e conflitos, qual decisão conserva o contrato?",
+          "options": [
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Merge integra históricos. Um conflito exige compreender as duas intenções e validar o resultado combinado.",
+            "Apagar marcadores de conflito sem testar o comportamento resultante."
+          ],
+          "answer": 2,
+          "explanation": "Merge integra históricos. Um conflito exige compreender as duas intenções e validar o resultado combinado. Compare o contrato com a entrada e com a evidência observada; apagar marcadores de conflito sem testar o comportamento resultante. não é uma verificação suficiente.",
+          "reviewLessons": [
+            14,
+            15
+          ]
+        },
+        {
+          "id": "q3",
+          "prompt": "No cenário \"Evolua a entrega para tratar mudanças e casos de fronteira sem perder os contratos anteriores.\" você precisa combinar Branches e trabalho isolado, Integração e conflitos, Remotos e rastreamento. Para a parte Remotos e rastreamento, qual decisão conserva o contrato?",
+          "options": [
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Fetch atualiza referências remotas sem integrar automaticamente o conteúdo na branch atual.",
+            "Tratar fetch e merge como a mesma operação.",
+            "O contrato pode ser presumido sem observar o resultado."
+          ],
+          "answer": 1,
+          "explanation": "Fetch atualiza referências remotas sem integrar automaticamente o conteúdo na branch atual. Compare o contrato com a entrada e com a evidência observada; tratar fetch e merge como a mesma operação. não é uma verificação suficiente.",
+          "reviewLessons": [
+            17,
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "id": "combo-3",
+      "title": "Git e GitHub: integração 3",
+      "scenario": "Integre estados de falha, comunicação e recuperação; comprove o comportamento em uma reprodução controlada.",
+      "requiredLessons": [
+        20,
+        21,
+        23,
+        24,
+        26,
+        27
+      ],
+      "skills": [
+        "Push e revisão",
+        "Ignore e segredos",
+        "Revert e recuperação"
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "No cenário \"Integre estados de falha, comunicação e recuperação; comprove o comportamento em uma reprodução controlada.\" você precisa combinar Push e revisão, Ignore e segredos, Revert e recuperação. Para a parte Push e revisão, qual decisão conserva o contrato?",
+          "options": [
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Push publica commits para um destino explícito. Revise branch, conteúdo e autorização antes de enviar.",
+            "Usar force para contornar qualquer rejeição sem investigar mudanças remotas."
+          ],
+          "answer": 2,
+          "explanation": "Push publica commits para um destino explícito. Revise branch, conteúdo e autorização antes de enviar. Compare o contrato com a entrada e com a evidência observada; usar force para contornar qualquer rejeição sem investigar mudanças remotas. não é uma verificação suficiente.",
+          "reviewLessons": [
+            20,
+            21
+          ]
+        },
+        {
+          "id": "q2",
+          "prompt": "No cenário \"Integre estados de falha, comunicação e recuperação; comprove o comportamento em uma reprodução controlada.\" você precisa combinar Push e revisão, Ignore e segredos, Revert e recuperação. Para a parte Ignore e segredos, qual decisão conserva o contrato?",
+          "options": [
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Gitignore afeta arquivos não rastreados. Uma credencial já publicada precisa ser revogada, mesmo se o arquivo for removido depois.",
+            "Achar que adicionar .env ao ignore remove esse arquivo de commits anteriores.",
+            "O contrato pode ser presumido sem observar o resultado."
+          ],
+          "answer": 1,
+          "explanation": "Gitignore afeta arquivos não rastreados. Uma credencial já publicada precisa ser revogada, mesmo se o arquivo for removido depois. Compare o contrato com a entrada e com a evidência observada; achar que adicionar .env ao ignore remove esse arquivo de commits anteriores. não é uma verificação suficiente.",
+          "reviewLessons": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "q3",
+          "prompt": "No cenário \"Integre estados de falha, comunicação e recuperação; comprove o comportamento em uma reprodução controlada.\" você precisa combinar Push e revisão, Ignore e segredos, Revert e recuperação. Para a parte Revert e recuperação, qual decisão conserva o contrato?",
+          "options": [
+            "Revert cria um novo commit inverso e preserva o histórico compartilhado; a recuperação deve partir de referências conferidas.",
+            "Reescrever a branch compartilhada quando um commit inverso resolveria a necessidade.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro."
+          ],
+          "answer": 0,
+          "explanation": "Revert cria um novo commit inverso e preserva o histórico compartilhado; a recuperação deve partir de referências conferidas. Compare o contrato com a entrada e com a evidência observada; reescrever a branch compartilhada quando um commit inverso resolveria a necessidade. não é uma verificação suficiente.",
+          "reviewLessons": [
+            26,
+            27
+          ]
+        }
+      ]
+    },
+    {
+      "id": "combo-4",
+      "title": "Git e GitHub: integração 4",
+      "scenario": "Prepare uma entrega reproduzível, com diagnóstico, revisão e limites de operação documentados.",
+      "requiredLessons": [
+        29,
+        30,
+        32,
+        33,
+        35,
+        36
+      ],
+      "skills": [
+        "Rebase e histórico",
+        "Tags e releases",
+        "Colaboração e automação"
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "No cenário \"Prepare uma entrega reproduzível, com diagnóstico, revisão e limites de operação documentados.\" você precisa combinar Rebase e histórico, Tags e releases, Colaboração e automação. Para a parte Rebase e histórico, qual decisão conserva o contrato?",
+          "options": [
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Rebase reaplica commits e altera seus identificadores; combine seu uso com a política de colaboração.",
+            "Reescrever commits já consumidos por outras pessoas sem coordenação.",
+            "O contrato pode ser presumido sem observar o resultado."
+          ],
+          "answer": 1,
+          "explanation": "Rebase reaplica commits e altera seus identificadores; combine seu uso com a política de colaboração. Compare o contrato com a entrada e com a evidência observada; reescrever commits já consumidos por outras pessoas sem coordenação. não é uma verificação suficiente.",
+          "reviewLessons": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "q2",
+          "prompt": "No cenário \"Prepare uma entrega reproduzível, com diagnóstico, revisão e limites de operação documentados.\" você precisa combinar Rebase e histórico, Tags e releases, Colaboração e automação. Para a parte Tags e releases, qual decisão conserva o contrato?",
+          "options": [
+            "Uma tag identifica um ponto do histórico. Release deve apontar para um commit verificado e ter instruções reproduzíveis.",
+            "Afirmar que criar uma tag local a publica automaticamente no GitHub.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro."
+          ],
+          "answer": 0,
+          "explanation": "Uma tag identifica um ponto do histórico. Release deve apontar para um commit verificado e ter instruções reproduzíveis. Compare o contrato com a entrada e com a evidência observada; afirmar que criar uma tag local a publica automaticamente no GitHub. não é uma verificação suficiente.",
+          "reviewLessons": [
+            32,
+            33
+          ]
+        },
+        {
+          "id": "q3",
+          "prompt": "No cenário \"Prepare uma entrega reproduzível, com diagnóstico, revisão e limites de operação documentados.\" você precisa combinar Rebase e histórico, Tags e releases, Colaboração e automação. Para a parte Colaboração e automação, qual decisão conserva o contrato?",
+          "options": [
+            "Usar resultados de testes de outro commit como prova da versão publicada.",
+            "O contrato pode ser presumido sem observar o resultado.",
+            "A aparência isolada comprova o comportamento e todos os casos de erro.",
+            "Revisões, verificações e commits pequenos reduzem o custo de diagnóstico; uma execução verde precisa corresponder ao commit entregue."
+          ],
+          "answer": 3,
+          "explanation": "Revisões, verificações e commits pequenos reduzem o custo de diagnóstico; uma execução verde precisa corresponder ao commit entregue. Compare o contrato com a entrada e com a evidência observada; usar resultados de testes de outro commit como prova da versão publicada. não é uma verificação suficiente.",
+          "reviewLessons": [
+            35,
+            36
+          ]
+        }
+      ]
+    }
+  ],
+  "finalProject": {
+    "id": "final",
+    "title": "Entrega colaborativa com histórico, revisão e release",
+    "scenario": "Consolide os incrementos dos 12 módulos em uma única entrega verificável, usando dados fictícios e explicando os contratos e limites.",
+    "requirements": [
+      "Repositório de laboratório com commits pequenos e mensagens que descrevem mudanças.",
+      "Branch de funcionalidade integrada por uma revisão documentada.",
+      "Conflito controlado resolvido e verificado com evidências.",
+      "Ignore configurado e conferência do conteúdo rastreado, usando apenas dados fictícios.",
+      "Correção reversível com revert e tag anotada para a entrega conferida.",
+      "Instruções de clone, reprodução das verificações e vínculo da evidência ao commit exato."
+    ],
+    "deliverables": [
+      "Código ou repositório do laboratório completo.",
+      "README com ambiente, instalação, execução e decisões.",
+      "Evidências dos casos normais, de fronteira e de falha.",
+      "Relatório de revisão com limitações e próximos passos."
+    ],
+    "rubric": [
+      {
+        "id": "r1",
+        "title": "Critério 1",
+        "description": "Repositório de laboratório com commits pequenos e mensagens que descrevem mudanças.",
+        "reviewLessons": [
+          3,
+          6
+        ]
+      },
+      {
+        "id": "r2",
+        "title": "Critério 2",
+        "description": "Branch de funcionalidade integrada por uma revisão documentada.",
+        "reviewLessons": [
+          9,
+          12
+        ]
+      },
+      {
+        "id": "r3",
+        "title": "Critério 3",
+        "description": "Conflito controlado resolvido e verificado com evidências.",
+        "reviewLessons": [
+          15,
+          18
+        ]
+      },
+      {
+        "id": "r4",
+        "title": "Critério 4",
+        "description": "Ignore configurado e conferência do conteúdo rastreado, usando apenas dados fictícios.",
+        "reviewLessons": [
+          21,
+          24
+        ]
+      },
+      {
+        "id": "r5",
+        "title": "Critério 5",
+        "description": "Correção reversível com revert e tag anotada para a entrega conferida.",
+        "reviewLessons": [
+          27,
+          30
+        ]
+      },
+      {
+        "id": "r6",
+        "title": "Critério 6",
+        "description": "Instruções de clone, reprodução das verificações e vínculo da evidência ao commit exato.",
+        "reviewLessons": [
+          33,
+          36
+        ]
+      }
+    ],
+    "acceptance": [
+      {
+        "title": "Fluxo principal",
+        "setup": "Prepare a entrega em ambiente limpo conforme o README.",
+        "input": "Execute a operação principal e percorra os seis requisitos.",
+        "expected": "O comportamento observado corresponde aos requisitos e pode ser reproduzido por outra pessoa.",
+        "reviewLessons": [
+          3,
+          9,
+          18
+        ]
+      },
+      {
+        "title": "Fronteira e falha",
+        "setup": "Use uma cópia do laboratório e uma entrada inválida ou condição de erro documentada.",
+        "input": "Provoque a condição de erro, registre o resultado e aplique a recuperação prevista.",
+        "expected": "A falha é compreensível, não corrompe o estado válido e o relatório explica a responsabilidade de cada camada.",
+        "reviewLessons": [
+          12,
+          21,
+          27
+        ]
+      },
+      {
+        "title": "Entrega reproduzível",
+        "setup": "Comece em nova pasta ou clone limpo, sem caches e sem arquivos privados.",
+        "input": "Siga os comandos e inspeções do README até a versão final.",
+        "expected": "Os artefatos e evidências correspondem à versão entregue; nenhuma senha ou dado real foi incluído.",
+        "reviewLessons": [
+          30,
+          33,
+          36
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Na defesa de Entrega colaborativa com histórico, revisão e release, como você justifica a decisão de Integração e conflitos?",
+        "options": [
+          "Apagar marcadores de conflito sem testar o comportamento resultante.",
+          "O contrato pode ser presumido sem observar o resultado.",
+          "A aparência isolada comprova o comportamento e todos os casos de erro.",
+          "Merge integra históricos. Um conflito exige compreender as duas intenções e validar o resultado combinado."
+        ],
+        "answer": 3,
+        "explanation": "Merge integra históricos. Um conflito exige compreender as duas intenções e validar o resultado combinado. Compare o contrato com a entrada e com a evidência observada; apagar marcadores de conflito sem testar o comportamento resultante. não é uma verificação suficiente.",
+        "reviewLessons": [
+          14,
+          15
+        ]
+      },
+      {
+        "id": "q2",
+        "prompt": "Na defesa de Entrega colaborativa com histórico, revisão e release, como você justifica a decisão de Revert e recuperação?",
+        "options": [
+          "O contrato pode ser presumido sem observar o resultado.",
+          "A aparência isolada comprova o comportamento e todos os casos de erro.",
+          "Revert cria um novo commit inverso e preserva o histórico compartilhado; a recuperação deve partir de referências conferidas.",
+          "Reescrever a branch compartilhada quando um commit inverso resolveria a necessidade."
+        ],
+        "answer": 2,
+        "explanation": "Revert cria um novo commit inverso e preserva o histórico compartilhado; a recuperação deve partir de referências conferidas. Compare o contrato com a entrada e com a evidência observada; reescrever a branch compartilhada quando um commit inverso resolveria a necessidade. não é uma verificação suficiente.",
+        "reviewLessons": [
+          26,
+          27
+        ]
+      },
+      {
+        "id": "q3",
+        "prompt": "Na defesa de Entrega colaborativa com histórico, revisão e release, como você justifica a decisão de Colaboração e automação?",
+        "options": [
+          "A aparência isolada comprova o comportamento e todos os casos de erro.",
+          "Revisões, verificações e commits pequenos reduzem o custo de diagnóstico; uma execução verde precisa corresponder ao commit entregue.",
+          "Usar resultados de testes de outro commit como prova da versão publicada.",
+          "O contrato pode ser presumido sem observar o resultado."
+        ],
+        "answer": 1,
+        "explanation": "Revisões, verificações e commits pequenos reduzem o custo de diagnóstico; uma execução verde precisa corresponder ao commit entregue. Compare o contrato com a entrada e com a evidência observada; usar resultados de testes de outro commit como prova da versão publicada. não é uma verificação suficiente.",
+        "reviewLessons": [
+          35,
+          36
+        ]
+      }
+    ]
+  }
+}
