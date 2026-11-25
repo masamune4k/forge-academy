@@ -26,6 +26,14 @@ A validação é feita pela API, inclusive quando alguém ignora o formulário. 
 
 ## Histórico e publicação
 
+### Recuperação do administrador sem a senha atual
+
+O proprietário da hospedagem pode solicitar uma operação única por `FORGE_OWNER_PASSWORD_RESET`, configurada como segredo de runtime da API. Ela identifica o mesmo ID de `FORGE_ADMIN_USER_ID`, o login exato, um identificador único, hashes scrypt/recuperação e uma validade máxima de 15 minutos. Não há endpoint público de recuperação administrativa. Não coloque essa configuração no GitHub ou no navegador.
+
+Na próxima execução da API, o lote transacional troca a senha, invalida a recuperação anterior, encerra sessões, remove os bloqueios de tentativas específicos da conta e registra a operação. O identificador consumido impede que a senha temporária seja reaplicada após o aluno escolher sua senha pessoal. O segredo deve ser removido e a mesma versão publicada novamente depois da conferência. A configuração não altera privilégios nem desbloqueia contas bloqueadas.
+
+### Histórico
+
 As últimas 100 ações administrativas ficam disponíveis no painel: geração/revogação de convite, redefinição de senha e bloqueio/desbloqueio. O histórico não contém senhas ou códigos completos. A lista de convites também mostra os 100 registros mais recentes; convites anteriores mantêm sua validade original.
 
 A atualização acrescenta duas colunas com valores padrão em `users`, além de `registration_invites` e `admin_audit`. As migrações são aplicadas no D1 durante a publicação Sites. O gateway Render precisa da mesma versão da interface e da lista de rotas permitidas. O banco continua no Sites, conforme [o MVP](MVP_RENDER.md).

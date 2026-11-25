@@ -28,5 +28,6 @@ export async function fixture(t,{configured=true}={}){
  f.register=async(login='student',inviteCode=defaultInvite)=>f.request('auth/register',{method:'POST',cookie:null,data:{login,displayName:login,password:'Senha aluno 9!',inviteCode}});
  f.invite=async(data={})=>f.request('admin/invites',{method:'POST',data:{label:'Turma',maxUses:1,days:7,...data}});
  f.handler=api;
+ f.db={prepare,batch:async statements=>{sql.exec('BEGIN');try{const result=statements.map(x=>x.execute());sql.exec('COMMIT');return result;}catch(error){sql.exec('ROLLBACK');throw error;}}};
  return f;
 }
