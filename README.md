@@ -31,7 +31,7 @@ As afinidades descrevem estilos de estudo; não medem competência nem restringe
 ## Contas e progresso
 
 - Novos cadastros exigem convite emitido no painel **Administração**, com validade, limite de usos e revogação. Contas anteriores permanecem válidas.
-- O administrador configurado pode buscar usuários, bloquear/desbloquear acesso e redefinir senhas temporárias, exigindo troca no próximo login. As ações sensíveis exigem sua senha e encerram as sessões do aluno. Veja [Administração](docs/ADMINISTRACAO.md).
+- O administrador configurado pode buscar usuários, bloquear/desbloquear acesso, excluir definitivamente contas de alunos com confirmação e redefinir senhas temporárias, exigindo troca no próximo login. As ações sensíveis exigem sua senha e encerram as sessões do aluno. Veja [Administração](docs/ADMINISTRACAO.md).
 - Cadastro com usuário, nome de exibição e senha de 8 a 128 caracteres. Não exige nome real ou e-mail.
 - Senhas protegidas por scrypt com salt aleatório; sessões opacas em cookie HttpOnly, Secure em HTTPS e SameSite=Lax. Tokens de sessão e recuperação são armazenados como hashes.
 - Código de recuperação exibido uma vez no cadastro e na recuperação. Não há envio por e-mail: cada aluno precisa guardar esse código.

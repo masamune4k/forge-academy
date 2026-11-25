@@ -10,7 +10,11 @@ Em **Gerenciar**, escolha redefinir a senha, bloquear ou desbloquear. Informe su
 
 Uma redefinição exige senha temporária de 8 a 128 caracteres, encerra as sessões do aluno e invalida o código de recuperação anterior. Comunique a senha temporária por um canal privado. No próximo acesso, o aluno precisa substituí-la por uma senha diferente antes de acessar os cursos e recebe um novo código de recuperação. As senhas são protegidas com scrypt; não são exibidas novamente nem registradas no histórico.
 
-Bloquear encerra as sessões e impede login e recuperação de acesso. Desbloquear preserva a senha e exige um novo login. Nenhuma dessas ações apaga aulas, anotações ou entregas. A exclusão definitiva de contas não faz parte deste painel.
+Bloquear encerra as sessões e impede login e recuperação de acesso. Desbloquear preserva a senha e exige um novo login. Nenhuma dessas ações apaga aulas, anotações ou entregas. Para remover um aluno, escolha **Excluir conta definitivamente** em **Gerenciar**. Digite exatamente o nome de usuário indicado, informe sua senha de administrador e marque a confirmação. O botão final descreve a exclusão definitiva. A API exige as mesmas confirmações, inclusive quando o formulário é ignorado.
+
+A exclusão remove a conta e, em cascata, suas sessões, progresso, respostas, anotações, rascunhos, resultados, tentativas e entregas. A ação não pode ser desfeita. As outras contas não são afetadas. O histórico administrativo conserva um registro da ação com o ID da conta removida, sem senha ou conteúdo de estudo.
+
+A conta administrativa é protegida contra exclusão. Contas que tenham autoria de registros administrativos anteriores também são preservadas para manter o histórico; nesse caso, use o bloqueio de acesso.
 
 ## Convites
 
@@ -34,7 +38,7 @@ Na próxima execução da API, o lote transacional troca a senha, invalida a rec
 
 ### Histórico
 
-As últimas 100 ações administrativas ficam disponíveis no painel: geração/revogação de convite, redefinição de senha e bloqueio/desbloqueio. O histórico não contém senhas ou códigos completos. A lista de convites também mostra os 100 registros mais recentes; convites anteriores mantêm sua validade original.
+As últimas 100 ações administrativas ficam disponíveis no painel: geração/revogação de convite, redefinição de senha, bloqueio/desbloqueio e exclusão de conta. O histórico não contém senhas ou códigos completos. A lista de convites também mostra os 100 registros mais recentes; convites anteriores mantêm sua validade original.
 
 A atualização acrescenta duas colunas com valores padrão em `users`, além de `registration_invites` e `admin_audit`. As migrações são aplicadas no D1 durante a publicação Sites. O gateway Render precisa da mesma versão da interface e da lista de rotas permitidas. O banco continua no Sites, conforme [o MVP](MVP_RENDER.md).
 

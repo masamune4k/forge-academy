@@ -43,14 +43,32 @@ export function createAdmin({db, ownerId, now, first, all, limit, body, json, pu
       await db.batch([db.prepare('UPDATE registration_invites SET revoked=1 WHERE id=?').bind(invite.id), audit(user, 'invite.revoked', invite.id)]);
       return json({ok:true});
     }
-    if (parts[1] === 'users' && (parts.length === 3 && method === 'PUT' || parts.length === 4 && parts[3] === 'password' && method === 'POST')) {
-      const target = await first('SELECT id,status FROM users WHERE id=?', parts[2]);
+    if (parts[1] === 'users' && (parts.length === 3 && method === 'PUT' || parts.length === 4 && ['password','delete'].includes(parts[3]) && method === 'POST')) {
+      const target = await first('SELECT id,login,status FROM users WHERE id=?', parts[2]);
       if (!target) throw new ApiError(404, 'Conta não encontrada.');
-      if (target.id === ownerId) throw new ApiError(400, 'Sua conta administrativa é protegida. Altere sua própria senha em Minha conta.');
+      if (target.id === ownerId) throw new ApiError(400, 'Sua conta administrativa é protegida contra exclusão e bloqueio. Altere sua própria senha em Minha conta.');
       await limit('admin-credentials:' + user.id, 30, 900);
       const data = await body(request), actor = await first('SELECT password FROM users WHERE id=?', user.id);
       if (!await verifyPassword(data.adminPassword, actor?.password || '')) throw new ApiError(401, 'A senha do administrador não confere.', 'ADMIN_PASSWORD');
       const guard = "EXISTS(SELECT 1 FROM users WHERE id=? AND password=? AND status='active' AND must_change_password=0)";
+      if (parts[3] === 'delete') {
+        if (data.confirmDelete !== true || data.confirmLogin !== target.login) throw new ApiError(400, 'Confirme a exclusão definitiva e digite exatamente o usuário da conta selecionada.');
+        const [history, invitations] = await Promise.all([
+          first('SELECT id FROM admin_audit WHERE actor_id=? LIMIT 1', target.id),
+          first('SELECT id FROM registration_invites WHERE created_by=? LIMIT 1', target.id),
+        ]);
+        if (history || invitations) throw new ApiError(409, 'Esta conta possui registros de administração vinculados. Bloqueie o acesso para preservar o histórico.');
+        const event = crypto.randomUUID();
+        const result = await db.batch([
+          db.prepare('INSERT INTO admin_audit(id,actor_id,action,target_id,detail,created_at) SELECT ?,?,?,?,?,? FROM users WHERE id=? AND login=? AND id<>? AND '+guard).bind(event,user.id,'user.deleted',target.id,'{}',now(),target.id,target.login,ownerId,user.id,actor.password),
+          db.prepare('DELETE FROM rate_limits WHERE key IN (?,?,?,?) AND EXISTS(SELECT 1 FROM admin_audit WHERE id=?)').bind(digest('auth-account:'+target.login),digest('recover:'+target.login),digest('password:'+target.id),digest('assessment:'+target.id),event),
+          // Os registros privados têm ON DELETE CASCADE no esquema existente.
+          // Auditoria e exclusão fazem parte do mesmo lote transacional.
+          db.prepare('DELETE FROM users WHERE id=? AND id<>? AND EXISTS(SELECT 1 FROM admin_audit WHERE id=? AND target_id=?)').bind(target.id,ownerId,event,target.id),
+        ]);
+        if (!result[2]?.meta?.changes) throw new ApiError(409, 'A conta ou sua credencial administrativa mudou. Atualize a lista e entre novamente antes de continuar.');
+        return json({ok:true, deletedUserId:target.id});
+      }
       let statement, action;
       if (parts[3] === 'password') {
         const password = await hashPassword(data.newPassword);

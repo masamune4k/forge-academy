@@ -150,4 +150,9 @@ test('rotas administrativas no gateway preservam autorização e convites obriga
   assert.equal((await request('/api/admin/invites/' + record.id + '/revoke', write({}, {Cookie:f.ownerCookie}))).status, 200);
   assert.equal((await f.register('revoked_gateway', code)).status, 400);
   assert.equal((await request('/api/admin/users/' + student.data.user.id + '/password', write({newPassword:'Invalid role 8!'}, {Cookie:student.cookie}))).status, 403);
+  const deletionPath='/api/admin/users/' + student.data.user.id + '/delete';
+  assert.equal((await request(deletionPath, write({}, {Cookie:student.cookie}))).status, 403);
+  assert.equal((await request(deletionPath, {method:'GET',headers:{Cookie:f.ownerCookie}})).status, 405);
+  assert.equal((await request(deletionPath, write({adminPassword:'Senha do admin 8!',confirmLogin:'student',confirmDelete:true}, {Cookie:f.ownerCookie}))).status, 200);
+  assert.equal((await request('/api/progress/go', {headers:{Cookie:student.cookie}})).status, 401);
 });
