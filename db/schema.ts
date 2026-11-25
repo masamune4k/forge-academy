@@ -4,6 +4,8 @@ export const users = sqliteTable('users', {
   id: text('id').primaryKey(), login: text('login').notNull().unique(),
   displayName: text('display_name').notNull(), password: text('password').notNull(),
   recoveryHash: text('recovery_hash').notNull(), classId: text('class_id').notNull().default('artifice'),
+  status: text('status').notNull().default('active'),
+  mustChangePassword: integer('must_change_password').notNull().default(0),
   createdAt: integer('created_at').notNull(), updatedAt: integer('updated_at').notNull(),
 });
 export const sessions = sqliteTable('sessions', {
@@ -34,3 +36,15 @@ export const submissions = sqliteTable('project_submissions', {
 export const limits = sqliteTable('rate_limits', {
   key: text('key').primaryKey(), window: integer('window').notNull(), count: integer('count').notNull(),
 });
+export const invites = sqliteTable('registration_invites', {
+  id: text('id').primaryKey(), codeHash: text('code_hash').notNull().unique(),
+  label: text('label').notNull(), maxUses: integer('max_uses').notNull(), uses: integer('uses').notNull().default(0),
+  expiresAt: integer('expires_at').notNull(), revoked: integer('revoked').notNull().default(0),
+  lastClaim: text('last_claim'), createdBy: text('created_by').notNull().references(() => users.id),
+  createdAt: integer('created_at').notNull(),
+});
+export const adminAudit = sqliteTable('admin_audit', {
+  id: text('id').primaryKey(), actorId: text('actor_id').notNull().references(() => users.id),
+  action: text('action').notNull(), targetId: text('target_id').notNull(),
+  detail: text('detail').notNull(), createdAt: integer('created_at').notNull(),
+}, t => [index('admin_audit_date').on(t.createdAt)]);

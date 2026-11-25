@@ -4,6 +4,7 @@ import {once} from 'node:events';
 import {readFileSync, readdirSync} from 'node:fs';
 import {DatabaseSync} from 'node:sqlite';
 import {createMvpServer} from '../server/mvp-server.mjs';
+import {digest} from '../server/auth.mjs';
 import {createApi} from '../server/api.mjs';
 
 const upstream = 'https://api.academy.test';
@@ -83,6 +84,8 @@ test('cadastro, login, duas contas, salvamento, conflito, senha e logout atravé
   db.exec('PRAGMA foreign_keys=ON;');
   const folder = new URL('../drizzle/', import.meta.url);
   for (const file of readdirSync(folder).filter(x => x.endsWith('.sql')).sort()) db.exec(readFileSync(new URL(file, folder), 'utf8'));
+  db.prepare("INSERT INTO users(id,login,display_name,password,recovery_hash,class_id,created_at,updated_at) VALUES('fixture-admin','fixture-admin','Fixture','disabled','disabled','artifice',0,0)").run();
+  db.prepare("INSERT INTO registration_invites(id,code_hash,label,max_uses,expires_at,created_by,created_at) VALUES('fixture',?,'Fixture',1000,?,'fixture-admin',0)").run(digest('11111111-11111111-11111111-11111111-11111111'),Date.now()+86400000);
   const prepare = sql => ({bind(...params) {
     const statement = db.prepare(sql);
     const execute = () => {
@@ -102,7 +105,7 @@ test('cadastro, login, duas contas, salvamento, conflito, senha e logout atravé
   assert.equal((await request('/api/auth/register', write({login:'short', displayName:'Aluno', password:'1234567'}))).status, 400);
   const password = 'Uma senha de teste 8';
   const register = async login => {
-    const response = await request('/api/auth/register', write({login, displayName:login, password}));
+    const response = await request('/api/auth/register', write({login, displayName:login, password, inviteCode:'11111111-11111111-11111111-11111111-11111111'}));
     assert.equal(response.status, 201);
     return {cookie:response.headers.get('set-cookie').split(';')[0], data:await response.json()};
   };
@@ -131,4 +134,20 @@ test('cadastro, login, duas contas, salvamento, conflito, senha e logout atravé
 
 test('configuração não aceita loop, credenciais ou origens com caminho', () => {
   for (const config of [{upstreamOrigin:publicOrigin, publicOrigin}, {upstreamOrigin:upstream + '/api', publicOrigin}, {upstreamOrigin:'https://secret:pass@api.test', publicOrigin}]) assert.throws(() => createMvpServer(config));
+});
+
+test('rotas administrativas no gateway preservam autorização e convites obrigatórios', async t => {
+  const {fixture} = await import('./helpers/api-fixture.mjs');
+  const f = await fixture(t);
+  const student = await f.register();
+  const request = await setup(t, (url, options) => f.handler(new Request(url, options)));
+  assert.equal((await request('/api/admin/users')).status, 401);
+  assert.equal((await request('/api/admin/users', {headers:{Cookie:student.cookie}})).status, 403);
+  assert.equal((await request('/api/admin/users', {headers:{Cookie:f.ownerCookie}})).status, 200);
+  const invite = await request('/api/admin/invites', write({label:'Gateway', maxUses:1, days:7}, {Cookie:f.ownerCookie}));
+  assert.equal(invite.status, 201);
+  const {code, invite:record} = await invite.json();
+  assert.equal((await request('/api/admin/invites/' + record.id + '/revoke', write({}, {Cookie:f.ownerCookie}))).status, 200);
+  assert.equal((await f.register('revoked_gateway', code)).status, 400);
+  assert.equal((await request('/api/admin/users/' + student.data.user.id + '/password', write({newPassword:'Invalid role 8!'}, {Cookie:student.cookie}))).status, 403);
 });

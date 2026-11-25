@@ -5,7 +5,7 @@ import assessments from '../../../server/assessments.json';
 
 export const dynamic = 'force-dynamic';
 function handle(request: Request) {
-  return createApi({db:env.DB,courses,assessments,dev:import.meta.env.DEV})(request);
+  return createApi({db:env.DB,courses,assessments,ownerId:env.FORGE_ADMIN_USER_ID,dev:import.meta.env.DEV})(request);
 }
 export const GET=handle;
 export const POST=handle;

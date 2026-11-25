@@ -1,9 +1,9 @@
-import {ApiError,digest,token,recoveryCode,hashPassword,verifyPassword,loginName,displayName,sessionCookie,readCookie} from './auth.mjs';
+import {ApiError,digest,token,recoveryCode,hashPassword,verifyPassword,validatePassword,loginName,displayName,sessionCookie,readCookie} from './auth.mjs';
+import {createAdmin} from './admin.mjs';
 import {classIds,documentKinds,cleanState,cleanDocuments,attachResults,eligibility,grade} from './domain.mjs';
 
 const json=(data,status=200,headers={})=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...headers}});
 const parse=(text,fallback={})=>{try{return JSON.parse(text);}catch{return fallback;}};
-const publicUser=u=>({id:u.id,login:u.login,displayName:u.display_name,classId:u.class_id});
 async function body(request){
  if(!(request.headers.get('content-type')||'').toLowerCase().startsWith('application/json'))throw new ApiError(415,'Envie os dados no formato JSON.');
  const reader=request.body?.getReader();if(!reader)return{};
@@ -13,7 +13,8 @@ async function body(request){
  let value;try{value=JSON.parse(new TextDecoder().decode(bytes));}catch{throw new ApiError(400,'Os dados enviados não são JSON válido.');}
  if(!value||typeof value!=='object'||Array.isArray(value))throw new ApiError(400,'Envie um objeto com os campos da solicitação.');return value;
 }
-export function createApi({db,courses,assessments,dev=false,now=()=>Date.now()}){
+export function createApi({db,courses,assessments,ownerId=null,dev=false,now=()=>Date.now()}){
+ const publicUser=u=>({id:u.id,login:u.login,displayName:u.display_name,classId:u.class_id,isAdmin:!!ownerId&&u.id===ownerId,mustChangePassword:!!u.must_change_password});
  const first=(sql,...values)=>db.prepare(sql).bind(...values).first();
  const all=async(sql,...values)=>(await db.prepare(sql).bind(...values).all()).results||[];
  const run=(sql,...values)=>db.prepare(sql).bind(...values).run();
@@ -24,13 +25,13 @@ export function createApi({db,courses,assessments,dev=false,now=()=>Date.now()})
  }
  async function userFor(request,required=true){
   const value=readCookie(request);let user=null;
-  if(/^[a-zA-Z0-9_-]{43}$/.test(value))user=await first('SELECT u.id,u.login,u.display_name,u.class_id FROM sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=? AND s.expires_at>?',digest(value),now());
+  if(/^[a-zA-Z0-9_-]{43}$/.test(value))user=await first("SELECT u.id,u.login,u.display_name,u.class_id,u.must_change_password FROM sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=? AND s.expires_at>? AND u.status='active'",digest(value),now());
   const expected=request.headers.get('x-forge-account');if(user&&expected&&expected!==user.id)throw new ApiError(401,'A conta foi alterada em outra aba. Entre novamente para continuar.','AUTH_SESSION');
   if(!user&&required)throw new ApiError(401,'Entre na sua conta para acessar seus estudos.','AUTH_SESSION');return user;
  }
  async function newSession(request,user,remember=false,expectedPassword=user.password){
   const value=token(),duration=(remember?14:1)*86400000;
-  const insert=expectedPassword?db.prepare('INSERT INTO sessions(token_hash,user_id,expires_at,created_at) SELECT ?,id,?,? FROM users WHERE id=? AND password=?').bind(digest(value),now()+duration,now(),user.id,expectedPassword):db.prepare('INSERT INTO sessions(token_hash,user_id,expires_at,created_at) VALUES(?,?,?,?)').bind(digest(value),user.id,now()+duration,now());
+  const insert=expectedPassword?db.prepare("INSERT INTO sessions(token_hash,user_id,expires_at,created_at) SELECT ?,id,?,? FROM users WHERE id=? AND password=? AND status='active'").bind(digest(value),now()+duration,now(),user.id,expectedPassword):db.prepare("INSERT INTO sessions(token_hash,user_id,expires_at,created_at) SELECT ?,id,?,? FROM users WHERE id=? AND status='active'").bind(digest(value),now()+duration,now(),user.id);
   const saved=await db.batch([db.prepare('DELETE FROM sessions WHERE expires_at<?').bind(now()),insert]);
   if(!saved[1]?.meta?.changes)throw new ApiError(401,'As credenciais foram alteradas. Entre novamente.');
   return sessionCookie(request,value,remember?duration/1000:undefined);
@@ -49,6 +50,7 @@ export function createApi({db,courses,assessments,dev=false,now=()=>Date.now()})
   return{state,revision:row?.revision||0,results,submission:submission?{...parse(submission.submission),updatedAt:submission.updated_at}:null};
  }
  async function summary(user){
+  if(user.must_change_password)return{user:publicUser(user),dev,progress:{},results:{}};
   const rows=await all('SELECT course_id,state,revision FROM course_progress WHERE user_id=?',user.id);
   const results=await all('SELECT course_id,assessment_id,result FROM assessment_results WHERE user_id=?',user.id);
   const resultMap={};for(const r of results){resultMap[r.course_id]??={};resultMap[r.course_id][r.assessment_id]=parse(r.result);}
@@ -73,6 +75,7 @@ export function createApi({db,courses,assessments,dev=false,now=()=>Date.now()})
   const saved=await first('SELECT result FROM assessment_results WHERE user_id=? AND course_id=? AND assessment_id=?',user.id,course.id,definition.id);
   return{result:parse(saved.result),version};
  }
+ const admin=createAdmin({db,ownerId,now,first,all,limit,body,json,publicUser});
  return async function handle(request){
   try{
    if(!db)return json({error:'O banco da plataforma ainda não está conectado.'},503);
@@ -100,35 +103,47 @@ export function createApi({db,courses,assessments,dev=false,now=()=>Date.now()})
      const user=await userFor(request);await limit('password:'+user.id,8,900);
      const stored=await first('SELECT password FROM users WHERE id=?',user.id);
      if(!await verifyPassword(data.currentPassword,stored.password))throw new ApiError(401,'A senha atual não confere.');
-     const encoded=await hashPassword(data.newPassword);
-     const changed=await db.batch([db.prepare('UPDATE users SET password=?,updated_at=? WHERE id=? AND password=?').bind(encoded,now(),user.id,stored.password),db.prepare('DELETE FROM sessions WHERE user_id=? AND EXISTS(SELECT 1 FROM users WHERE id=? AND password=?)').bind(user.id,user.id,encoded)]);
+     if(data.currentPassword===data.newPassword)throw new ApiError(400,'Escolha uma senha diferente da senha atual.');
+     const encoded=await hashPassword(data.newPassword),code=user.must_change_password?recoveryCode():null;
+     const changed=await db.batch([db.prepare("UPDATE users SET password=?,must_change_password=0,recovery_hash=coalesce(?,recovery_hash),updated_at=? WHERE id=? AND password=? AND status='active'").bind(encoded,code?digest(user.login+':'+code):null,now(),user.id,stored.password),db.prepare('DELETE FROM sessions WHERE user_id=? AND EXISTS(SELECT 1 FROM users WHERE id=? AND password=?)').bind(user.id,user.id,encoded)]);
      if(!changed[0]?.meta?.changes)throw new ApiError(409,'As credenciais já foram alteradas em outra sessão. Entre novamente.');
-     return json({ok:true},200,{'Set-Cookie':await newSession(request,user,false,encoded)});
+     return json({ok:true,...(code?{recoveryCode:code}:{})},200,{'Set-Cookie':await newSession(request,user,false,encoded)});
     }
     const login=loginName(data.login);await limit('auth-account:'+login,12,900);
     if(action==='register'){
      await limit('register-ip:'+ip,40,3600);
-     const name=displayName(data.displayName),password=await hashPassword(data.password),code=recoveryCode();
+     const name=displayName(data.displayName);validatePassword(data.password);
+     const inviteCode=typeof data.inviteCode==='string'?data.inviteCode.trim().toLowerCase():'';
+     if(!/^[a-f0-9]{8}(?:-[a-f0-9]{8}){4}$/.test(inviteCode))throw new ApiError(400,'Informe um código de convite válido fornecido pela administração.');
+     const inviteHash=digest(inviteCode);
+     const invite=await first('SELECT id FROM registration_invites WHERE code_hash=? AND revoked=0 AND expires_at>? AND uses<max_uses',inviteHash,now());
+     if(!invite)throw new ApiError(400,'Convite inválido, expirado ou sem cadastros disponíveis.');
+     const password=await hashPassword(data.password),code=recoveryCode(),claim=crypto.randomUUID();
      const user={id:crypto.randomUUID(),login,display_name:name,class_id:'artifice'};
-     try{await run('INSERT INTO users(id,login,display_name,password,recovery_hash,class_id,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?)',user.id,login,name,password,digest(login+':'+code),'artifice',now(),now());}
+     try{const saved=await db.batch([
+      db.prepare('UPDATE registration_invites SET uses=uses+1,last_claim=? WHERE code_hash=? AND revoked=0 AND expires_at>? AND uses<max_uses').bind(claim,inviteHash,now()),
+      db.prepare('INSERT INTO users(id,login,display_name,password,recovery_hash,class_id,created_at,updated_at) SELECT ?,?,?,?,?,?,?,? WHERE EXISTS(SELECT 1 FROM registration_invites WHERE code_hash=? AND last_claim=?)').bind(user.id,login,name,password,digest(login+':'+code),'artifice',now(),now(),inviteHash,claim),
+     ]);if(!saved[1]?.meta?.changes)throw new ApiError(400,'Convite inválido, expirado ou sem cadastros disponíveis.');}
      catch(error){if(/unique/i.test(String(error)))throw new ApiError(409,'Esse usuário já está cadastrado. Escolha outro.');throw error;}
      return json({user:publicUser(user),recoveryCode:code},201,{'Set-Cookie':await newSession(request,user,data.remember===true,password)});
     }
     const stored=await first('SELECT * FROM users WHERE login=?',login);
     if(action==='login'){
-     const valid=await verifyPassword(data.password,stored?.password||'');if(!valid||!stored)throw new ApiError(401,'Usuário ou senha inválidos.');
+     const valid=await verifyPassword(data.password,stored?.password||'');if(!valid||!stored||stored.status!=='active')throw new ApiError(401,'Usuário ou senha inválidos, ou conta bloqueada.');
      return json({user:publicUser(stored)},200,{'Set-Cookie':await newSession(request,stored,data.remember===true)});
     }
     await limit('recover:'+login,5,3600);
     const code=typeof data.recoveryCode==='string'?data.recoveryCode.trim().toLowerCase():'';
-    if(!stored||!code||digest(login+':'+code)!==stored.recovery_hash)throw new ApiError(401,'Usuário ou código de recuperação inválidos.');
+    if(!stored||stored.status!=='active'||!code||digest(login+':'+code)!==stored.recovery_hash)throw new ApiError(401,'Usuário ou código de recuperação inválidos.');
     const password=await hashPassword(data.newPassword),replacement=recoveryCode();
     const replacementHash=digest(login+':'+replacement);
-    const changed=await db.batch([db.prepare('UPDATE users SET password=?,recovery_hash=?,updated_at=? WHERE id=? AND recovery_hash=?').bind(password,replacementHash,now(),stored.id,stored.recovery_hash),db.prepare('DELETE FROM sessions WHERE user_id=? AND EXISTS(SELECT 1 FROM users WHERE id=? AND recovery_hash=?)').bind(stored.id,stored.id,replacementHash)]);
+    const changed=await db.batch([db.prepare("UPDATE users SET password=?,recovery_hash=?,must_change_password=0,updated_at=? WHERE id=? AND recovery_hash=? AND status='active'").bind(password,replacementHash,now(),stored.id,stored.recovery_hash),db.prepare('DELETE FROM sessions WHERE user_id=? AND EXISTS(SELECT 1 FROM users WHERE id=? AND recovery_hash=?)').bind(stored.id,stored.id,replacementHash)]);
     if(!changed[0]?.meta?.changes)throw new ApiError(409,'Esse código de recuperação já foi utilizado. Use o código mais recente.');
     return json({user:publicUser(stored),recoveryCode:replacement},200,{'Set-Cookie':await newSession(request,stored,false,password)});
    }
    const user=await userFor(request);
+   if(user.must_change_password)throw new ApiError(403,'Defina sua nova senha antes de continuar.','PASSWORD_CHANGE_REQUIRED');
+   if(parts[0]==='admin')return await admin(request,user,parts,url);
    if(parts[0]==='profile'&&method==='PUT'){
     const data=await body(request),name=displayName(data.displayName);
     if(!classIds.includes(data.classId))throw new ApiError(400,'Escolha uma classe disponível.');

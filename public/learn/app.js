@@ -62,6 +62,7 @@
     const sync=document.getElementById('cloud-status'); if(sync){sync.textContent=window.Account.message||'Progresso salvo na sua conta.';sync.dataset.state=window.Account.status;}
   }
   const menu = [['cursos', 'home', 'Todos os cursos'], ['inicio', 'home', 'Visão geral'], ['mapa', 'path', 'Trilha de aprendizado'], ['trilha', 'book', 'Aulas'], ['arena', 'flag', 'Desafios de nível'], ['combos', 'spark', 'Desafios integradores'], ['projetofinal', 'project', 'Projeto final'], ['revisao', 'book', 'Revisão'], ['habilidade', 'spark', 'Habilidade da classe'], ['personagem', 'spark', 'Meu perfil'], ['inventario', 'project', 'Recompensas'], ['laboratorio', 'code', 'Editor ' + C.name], ['projetos', 'project', 'Projetos'], ['cronograma', 'calendar', 'Cronograma'], ['referencias', 'book', 'Referências'], ['conta', 'home', 'Minha conta']];
+  if(window.Account.user.isAdmin)menu.push(['admin','home','Administração']);
   function nav(active) { document.getElementById('nav').innerHTML = menu.map(([href, ic, title]) => `<a href="#${href}" class="${active === href ? 'active' : ''}" ${active === href ? 'aria-current="page"' : ''}>${icon(ic)}${title}${href === 'trilha' ? '<span class="nav-badge">' + C.lessons.length + '</span>' : ''}</a>`).join(''); }
   function heading(eyebrow, title, desc, extra = '') { return `<div class="page-heading"><div><span class="eyebrow">${eyebrow}</span><h1>${title}</h1><p>${desc}</p></div>${extra}</div>`; }
   function levelCard(l) {
@@ -151,7 +152,8 @@
     let [route, value, tab] = segments;
     if (route === 'conteudo') route = 'inicio';
     let active = route, title;
-    if (route === 'combos') { main.innerHTML = advanced.combos(); title = 'Desafios integradores';
+    if (route === 'admin') { main.innerHTML = window.Account.user.isAdmin ? heading('FORGE ACADEMY · ADMINISTRAÇÃO','Contas e convites','Controle quem entra, gerencie acessos e acompanhe suas ações.')+'<div id="admin-content"></div>' : '<p role="alert">Acesso exclusivo do administrador.</p>'; title = 'Administração'; if(window.Account.user.isAdmin)window.AdminPanel?.mount();
+    } else if (route === 'combos') { main.innerHTML = advanced.combos(); title = 'Desafios integradores';
     } else if (route === 'combo') { main.innerHTML = advanced.combo(value); title = 'Desafio integrador'; active='combos';
     } else if (route === 'projetofinal') { main.innerHTML = advanced.finalProject(); title = 'Projeto final';
     } else if (route === 'revisao') { main.innerHTML = advanced.review(); title = 'Seu plano de revisão';

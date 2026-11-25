@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {DatabaseSync} from 'node:sqlite';
+import {digest} from '../server/auth.mjs';
 import {createApi} from '../server/api.mjs';
 
 const courses=JSON.parse(fs.readFileSync(new URL('../server/course-index.json',import.meta.url)));
@@ -10,6 +11,8 @@ const migration=fs.readdirSync(new URL('../drizzle',import.meta.url)).filter(x=>
 const password='Estudo8!';
 function setup({dev=false}={}){
  const sql=new DatabaseSync(':memory:');sql.exec('PRAGMA foreign_keys=ON;');sql.exec(migration);
+ sql.prepare("INSERT INTO users(id,login,display_name,password,recovery_hash,class_id,created_at,updated_at) VALUES('fixture-admin','fixture-admin','Fixture','disabled','disabled','artifice',0,0)").run();
+ sql.prepare("INSERT INTO registration_invites(id,code_hash,label,max_uses,expires_at,created_by,created_at) VALUES('fixture',?,'Fixture',1000,?,'fixture-admin',0)").run(digest('11111111-11111111-11111111-11111111-11111111'),Date.now()+86400000);
  const prepare=statement=>({bind(...params){
   const stmt=sql.prepare(statement);
   const execute=()=>{const hasRows=stmt.columns().length>0;const results=hasRows?stmt.all(...params):[];const changed=hasRows?sql.prepare('SELECT changes() AS n').get().n:stmt.run(...params).changes;return{results,meta:{changes:Number(changed)}};};
@@ -21,7 +24,7 @@ function setup({dev=false}={}){
   const response=await handle(new Request('https://academy.test/api/'+path,{method,headers:{...(method==='GET'?{}:{'Content-Type':'application/json',Origin:origin}),...(cookie?{Cookie:cookie}:{}),...(expectedUser?{'X-Forge-Account':expectedUser}:{})},...(data!==undefined?{body:JSON.stringify(data)}:{})}));
   return{status:response.status,data:await response.json().catch(()=>null),cookie:response.headers.get('set-cookie')?.split(';')[0],headers:response.headers};
  }
- async function register(login='aluno_a'){const r=await request('auth/register',{method:'POST',data:{login,displayName:login,password}});assert.equal(r.status,201,JSON.stringify(r.data));return r;}
+ async function register(login='aluno_a'){const r=await request('auth/register',{method:'POST',data:{login,displayName:login,password,inviteCode:'11111111-11111111-11111111-11111111-11111111'}});assert.equal(r.status,201,JSON.stringify(r.data));return r;}
  return{sql,request,register,advance:ms=>{time+=ms;},close:()=>sql.close()};
 }
 function learned(course,ids){const s={schema:1,courseId:course.id,read:{},quiz:{},exercises:{},projects:{},rpg:{rewarded:[],bosses:{}}};for(const id of ids){const l=course.lessons[id-1];s.read[id]=true;s.quiz[id]={answer:l.quiz.answer,attempts:1};for(const e of l.exercises)s.exercises[`${id}-${e.id}`]=true;}return s;}
@@ -29,7 +32,7 @@ function learned(course,ids){const s={schema:1,courseId:course.id,read:{},quiz:{
 test('cadastro, hash lento, cookie seguro e login não expõem credenciais',async()=>{
  const t=setup();try{
   const tooShort=await t.request('auth/register',{method:'POST',data:{login:'aluno_a',displayName:'Aluno',password:'1234567'}});assert.equal(tooShort.status,400);assert.match(tooShort.data.error,/8 a 128/);
-  const a=await t.register();const stored=t.sql.prepare('SELECT * FROM users').get();
+  const a=await t.register();const stored=t.sql.prepare("SELECT * FROM users WHERE login='aluno_a'").get();
   assert.notEqual(stored.password,password);assert.equal(JSON.parse(stored.password).algorithm,'scrypt');assert.equal(JSON.parse(stored.password).N,32768);
   assert.notEqual(stored.recovery_hash,a.data.recoveryCode);assert.match(a.headers.get('set-cookie'),/__Host-forge_session=.*HttpOnly.*Secure/);
   assert.equal(a.data.user.password,undefined);assert.equal(a.data.user.recoveryHash,undefined);

@@ -14,6 +14,9 @@ function origin(value, label) {
   return url.origin;
 }
 function apiMethods(path) {
+  if (/^\/api\/admin\/(users|invites|audit)$/.test(path)) return path.endsWith('/invites') ? ['GET', 'POST'] : ['GET'];
+  if (/^\/api\/admin\/users\/[a-f0-9-]{36}$/.test(path)) return ['PUT'];
+  if (/^\/api\/admin\/users\/[a-f0-9-]{36}\/password$/.test(path) || /^\/api\/admin\/invites\/[a-f0-9-]{36}\/revoke$/.test(path)) return ['POST'];
   if (['/api/health', '/api/auth/me'].includes(path)) return ['GET'];
   if (/^\/api\/auth\/(register|login|logout|recover|password)$/.test(path)) return ['POST'];
   if (path === '/api/profile') return ['PUT'];
